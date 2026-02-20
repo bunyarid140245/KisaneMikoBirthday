@@ -193,13 +193,24 @@
             border-radius: 20px;
             width: 90%;
             max-width: 450px;
-            max-height: 90vh;
-            overflow-y: auto;
+            /* แก้ไข: เอา max-height และ overflow-y ออกเพื่อไม่ให้กล่องบี้และตัดเนื้อหา */
             text-align: center;
             position: relative;
             animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
+
+        /* เพิ่มคลาสใหม่สำหรับจัดการเลื่อนอ่านเนื้อหาด้านใน */
+        .modal-scroll-content {
+            max-height: 70vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 5px 10px;
+        }
+        
+        /* ตกแต่ง Scrollbar ให้ดูน่ารัก */
+        .modal-scroll-content::-webkit-scrollbar { width: 6px; }
+        .modal-scroll-content::-webkit-scrollbar-thumb { background-color: #fbcfe8; border-radius: 10px; }
 
         @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
@@ -210,9 +221,10 @@
             color: #999;
             cursor: pointer;
             line-height: 1;
+            z-index: 20; /* ดันให้อยู่บนสุด */
         }
 
-        #agreementModal .modal-box { border: 4px solid var(--window-bar); }
+        #agreementModal .modal-box { border: 4px solid var(--window-bar); padding: 20px 15px; }
         #agreementModal h2 { color: #db2777; font-size: 1.4rem; margin-bottom: 15px; }
         
         .rules-content {
@@ -239,12 +251,13 @@
             margin-top: 15px;
         }
 
-        .modal-image { width: 100%; max-width: 120px; margin-bottom: 10px; }
-        .success-image { max-width: 250px; margin-top: 15px; border-radius: 10px;}
+        .modal-image { width: 100%; max-width: 120px; margin-bottom: 10px; display: inline-block; }
+        .success-image { width: 100%; max-width: 250px; margin-top: 15px; border-radius: 10px; display: inline-block;}
 
         .speech-bubble {
             position: absolute;
-            top: -30px; right: -10px;
+            top: -30px; 
+            right: 15px; /* ดึงเข้ามาด้านในนิดนึงเพื่อไม่ให้ขอบจอล้น */
             background: white;
             border: 2px solid #86efac;
             border-radius: 50px;
@@ -254,6 +267,7 @@
             font-size: 0.95rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transform: rotate(5deg);
+            z-index: 10;
         }
         .speech-bubble::after {
             content: ''; position: absolute; bottom: -8px; left: 20px;
@@ -270,38 +284,42 @@
     <!-- Pop-up ข้อตกลงส่งของขวัญ -->
     <div class="modal-overlay" id="agreementModal" style="display: flex;">
         <div class="modal-box">
-            <div class="speech-bubble" style="top: -20px; right: 0;">รบกวนอ่านก่อนน้า~ 🎁</div>
-            <img src="เหงื่อตก.jpg" alt="มิโกะ" class="modal-image" onerror="this.style.display='none'">
+            <div class="speech-bubble" style="top: -20px; right: 10px;">รบกวนอ่านก่อนน้า~ 🎁</div>
             
-            <h2>ข้อตกลงในการส่งของขวัญ</h2>
-            
-            <div class="rules-content">
-                <p><strong>ผู้ที่ยังไม่ได้ติดต่อแอดมินหรือมิโกะ:</strong><br>รบกวนติดต่อเพื่อรับช่องทางการส่งของขวัญที่ Server Discord ก่อนนะคะ</p>
-                <hr style="border: 0; border-top: 1px dashed #fbcfe8; margin: 10px 0;">
+            <!-- เพิ่ม div คลุมเนื้อหาที่ต้องการให้เลื่อนอ่านได้ -->
+            <div class="modal-scroll-content">
+                <img src="เหงื่อตก.png" alt="มิโกะ" class="modal-image" onerror="this.style.display='none'">
                 
-                <p><strong>❌ ข้อห้ามในการส่ง:</strong></p>
-                <ul>
-                    <li>อาหาร</li>
-                    <li>ขนม</li>
-                    <li>น้ำ</li>
-                    <li>สิ่งผิดกฏหมาย</li>
-                    <li>สิ่งลามกอนาจาร</li>
-                </ul>
+                <h2>ข้อตกลงในการส่งของขวัญ</h2>
+                
+                <div class="rules-content">
+                    <p><strong>ผู้ที่ยังไม่ได้ติดต่อแอดมินหรือมิโกะ:</strong><br>รบกวนติดต่อเพื่อรับช่องทางการส่งของขวัญที่ Server Discord ก่อนนะคะ</p>
+                    <hr style="border: 0; border-top: 1px dashed #fbcfe8; margin: 10px 0;">
+                    
+                    <p><strong>❌ ข้อห้ามในการส่ง:</strong></p>
+                    <ul>
+                        <li>อาหาร</li>
+                        <li>ขนม</li>
+                        <li>น้ำ</li>
+                        <li>สิ่งผิดกฏหมาย</li>
+                        <li>สิ่งลามกอนาจาร</li>
+                    </ul>
 
-                <p><strong>📦 สำหรับของที่แตกหักง่าย/เปราะบาง:</strong><br>ควรห่อของขวัญให้มิดชิด ตัวอย่างเช่น:</p>
-                <ul>
-                    <li>ของมีคม</li>
-                    <li>แก้ว</li>
-                    <li>กระดาษ</li>
-                    <li>สแตนดี้</li>
-                </ul>
+                    <p><strong>📦 สำหรับของที่แตกหักง่าย/เปราะบาง:</strong><br>ควรห่อของขวัญให้มิดชิด ตัวอย่างเช่น:</p>
+                    <ul>
+                        <li>ของมีคม</li>
+                        <li>แก้ว</li>
+                        <li>กระดาษ</li>
+                        <li>สแตนดี้</li>
+                    </ul>
 
-                <div class="warning-text">
-                    ⚠️ หากมีการเก็บเงินปลายทาง ทางเราขออนุญาตไม่รับของและส่งของคืนให้ผู้ส่งค่ะ
+                    <div class="warning-text">
+                        ⚠️ หากมีการเก็บเงินปลายทาง ทางเราขออนุญาตไม่รับของและส่งของคืนให้ผู้ส่งค่ะ
+                    </div>
                 </div>
-            </div>
 
-            <button class="submit-btn" id="agreeBtn">รับทราบและตกลง 🌸</button>
+                <button class="submit-btn" id="agreeBtn">รับทราบและตกลง 🌸</button>
+            </div>
         </div>
     </div>
 
@@ -353,10 +371,13 @@
 
     <!-- Pop-up Modal เมื่อส่งสำเร็จ -->
     <div class="modal-overlay" id="successModal">
-        <div class="modal-box" style="border-color: #6ee7b7;">
+        <div class="modal-box" style="border-color: #6ee7b7; padding: 30px 20px;">
             <span class="close-btn" id="closeModal">&times;</span>
-            <div class="speech-bubble" style="top: -25px;">ขอบคุณนะ!<br>ได้รับของขวัญแล้ว!</div>
-            <img src="ของขวัญ.jpg" alt="ของขวัญ" class="success-image" onerror="this.style.display='none'">
+            <div class="speech-bubble" style="top: -25px; right: 15px;">ขอบคุณนะ!<br>ได้รับของขวัญแล้ว!</div>
+            
+            <div class="modal-scroll-content" style="overflow: hidden;">
+                <img src="ของขวัญ.png" alt="ของขวัญ" class="success-image" onerror="this.style.display='none'">
+            </div>
         </div>
     </div>
 
@@ -383,7 +404,7 @@
         // ==========================================
         // ⚙️ นำ URL ของเว็บแอป (Web App URL) ที่ได้จาก Apps Script มาวางตรงนี้
         // ==========================================
-        const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzflLhLgSfZVCVmkVPsDVQNq4KX3GhLZ0Ib44s1ZrPznXfsNQgUphp1kh9P94NDtN7f/exec'; 
+        const GAS_WEB_APP_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE'; 
 
         const form = document.getElementById('giftForm');
         const submitBtn = document.getElementById('submitBtn');
