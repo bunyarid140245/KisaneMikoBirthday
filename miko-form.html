@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฟอร์มส่งคำอวยพรให้มิโกะ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-top: #dbeafe; /* ฟ้าอ่อน */
+            --bg-bottom: #fce7f3; /* ชมพูอ่อน */
+            --window-bar: #fbcfe8;
+            --text-dark: #4b5563;
+            --input-bg: #fff5f8;
+            --input-border: #f9a8d4;
+            --btn-bg: #f472b6;
+            --btn-hover: #db2777;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Mali', cursive;
+        }
+
+        body {
+            /* พื้นหลังไล่สีฟ้าลงมาชมพู */
+            background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+            background-attachment: fixed; /* แก้ปัญหาพื้นหลังขาดเวลาจอแคบ/เลื่อนจอ */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* --- คอนเทนเนอร์ซากุระ (แก้ปัญหา Scrollbar ล้นจอ) --- */
+        #sakura-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* เพื่อให้คลิกผ่านซากุระไปโดนฟอร์มได้ */
+            overflow: hidden; /* ซ่อนซากุระที่ร่วงล้นจอ จะได้ไม่เกิดเลื่อนขึ้นลง */
+            z-index: 1;
+        }
+
+        /* --- อนิเมชั่นซากุระตก --- */
+        .sakura {
+            position: absolute;
+            background-color: #ffb7c5;
+            border-radius: 100% 0% 100% 0%;
+            opacity: 0.6;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) translateX(0) rotate(0deg) scale(0.5); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(110vh) translateX(20px) rotate(360deg) scale(1); opacity: 0; }
+        }
+
+        /* --- คอนเทนเนอร์หลัก --- */
+        .wrapper {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 450px;
+            margin-top: 100px; /* เว้นที่ด้านบนให้พอสำหรับหัวน้องมิโกะ */
+            margin-bottom: 40px;
+        }
+
+        /* รูปน้องมิโกะเกาะขอบบน */
+        .top-character {
+            position: absolute;
+            bottom: 100%; /* ดันรูปให้ขึ้นไปอยู่บนขอบพอดี */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px; /* ปรับขนาดรูปได้ตามต้องการ */
+            margin-bottom: -23px; /* ดึงรูปลงมาทับเส้นขอบหน้าต่างนิดนึงเพื่อความเนียน */
+            z-index: 12;
+            pointer-events: none; /* ไม่ให้รูปบังการคลิก */
+            background: transparent; /* เอาพื้นหลังออก */
+            border: none; /* เอาเส้นขอบออก */
+            border-radius: 0; /* เอาวงกลมออก */
+            box-shadow: none; /* เอาเงาออก */
+        }
+
+        /* --- กรอบหน้าต่างแบบฟอร์ม --- */
+        .window-box {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 2px solid var(--window-bar);
+        }
+
+        /* แถบด้านบนของหน้าต่าง */
+        .window-header {
+            background-color: var(--window-bar);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot.red { background-color: #ff5f56; }
+        .dot.yellow { background-color: #ffbd2e; }
+        .dot.green { background-color: #27c93f; }
+
+        /* ส่วนเนื้อหาฟอร์ม */
+        .form-content {
+            padding: 30px 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--btn-hover);
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--input-border);
+            border-radius: 8px;
+            background-color: var(--input-bg);
+            font-size: 1rem;
+            color: var(--text-dark);
+            transition: all 0.3s;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--btn-hover);
+            background-color: white;
+        }
+
+        button.submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--window-bar); /* สีชมพูอ่อนเหมือนรูป */
+            color: var(--text-dark);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+
+        button.submit-btn:hover {
+            background-color: var(--input-border);
+            color: white;
+        }
+
+        /* --- Pop-up (Modal) --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* ทำให้พื้นหลังทึบขึ้นนิดนึงเพื่อเน้น pop-up */
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-box {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 15px;
+            border: 3px solid var(--window-bar);
+            width: 90%;
+            max-width: 350px;
+            text-align: center;
+            position: relative;
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 15px;
+            font-size: 1.5rem;
+            color: #999;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        /* กล่องคำพูด (Speech Bubble) */
+        .speech-bubble {
+            position: absolute;
+            top: 10px;
+            right: -20px;
+            background: white;
+            border: 2px solid #86efac; /* ขอบสีเขียวตามรูป */
+            border-radius: 50px;
+            padding: 10px 20px;
+            color: #166534;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 101;
+            transform: rotate(5deg);
+        }
+        /* หางลูกโป่งคำพูด */
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 30px;
+            border-width: 10px 10px 0 0;
+            border-style: solid;
+            border-color: #86efac transparent transparent transparent;
+        }
+
+        .modal-image {
+            width: 100%;
+            max-width: 250px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        /* สไตล์พิเศษสำหรับ Pop-up ข้อตกลง */
+        #agreementModal .modal-box {
+            border-color: #a7f3d0; /* สีเขียวมิ้นต์ */
+        }
+        #agreementModal h2 {
+            color: var(--btn-hover);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        #agreementModal p {
+            color: var(--text-dark);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        #agreeBtn {
+            background-color: #a7f3d0;
+            border-color: #6ee7b7;
+        }
+        #agreeBtn:hover {
+            background-color: #6ee7b7;
+            color: #166534;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- คอนเทนเนอร์สำหรับใส่ซากุระ (กันไม่ให้ล้นจอ) -->
+    <div id="sakura-container"></div>
+
+    <script>
+        // สร้างซากุระร่วง
+        const sakuraContainer = document.getElementById('sakura-container');
+        for(let i=0; i<15; i++) {
+            let sakura = document.createElement('div');
+            sakura.className = 'sakura';
+            sakura.style.left = Math.random() * 100 + 'vw';
+            sakura.style.width = (Math.random() * 10 + 10) + 'px';
+            sakura.style.height = (Math.random() * 10 + 10) + 'px';
+            sakura.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            sakura.style.animationDelay = (Math.random() * 5) + 's';
+            sakuraContainer.appendChild(sakura);
+        }
+    </script>
+
+    <!-- Pop-up ข้อตกลงก่อนเริ่มพิมพ์ (แสดงทันทีเมื่อโหลดหน้าเว็บ) -->
+    <div class="modal-overlay" id="agreementModal" style="display: flex;">
+        <div class="modal-box">
+            <div class="speech-bubble" style="top: -10px; right: -15px; font-size: 0.9rem;">
+                อ่านก่อนน้า~ 🐾
+            </div>
+            
+            <!-- เพิ่มรูป "เหงื่อตก.jpg" ตรงนี้ -->
+            <img src="มองแรง.png" alt="มิโกะขอร้อง" class="modal-image" style="margin-top: 0; margin-bottom: 15px; max-width: 150px;">
+            
+            <h2>ข้อตกลงก่อนส่งข้อความ</h2>
+            <p>
+                เพื่อสร้างพื้นที่ที่น่ารักและปลอดภัย<br>
+                <strong>กรุณายอมรับว่าจะใช้ถ้อยคำที่สุภาพ</strong><br>
+                และไม่ส่งข้อความหยาบคาย หรือไม่เหมาะสมให้มิโกะนะคะ 💖
+            </p>
+            <button class="submit-btn" id="agreeBtn">ยอมรับและตกลง 🌸</button>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <!-- ใส่ชื่อไฟล์รูปน้องมิโกะแบบ "พื้นหลังใส (.png)" ตรง src -->
+        <img src="รูปมิโกะพื้นหลังใส.png" alt="Miko" class="top-character" onerror="this.style.display='none'">
+
+        <div class="window-box" id="formContainer">
+            <div class="window-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+
+            <div class="form-content">
+                <h1>คำอวยพรให้แมวเขียว</h1>
+                <p style="text-align: center; color: #888; font-size: 0.95rem; margin-top: -15px; margin-bottom: 20px;">มาร่วมส่งความรักให้มิโกะกันน้า~ 🐾✨</p>
+                <form id="mikoForm">
+                    <div class="form-group">
+                        <label for="youtubeName">ชื่อในYoutube</label>
+                        <input type="text" id="youtubeName" name="entry.448531650" placeholder="พิมพ์ชื่อช่อง Youtube ของตัวเองตรงนี้เลย~ 🐈" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wishes">คำอวยพรที่ต้องการส่งให้มิโกะ</label>
+                        <textarea id="wishes" name="entry.720592089" placeholder="ส่งคำอวยพรน่ารักๆ ให้มิโกะได้เลยน้า รออ่านอยู่นะ! 💖✨" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">ส่งคำอวยพรเลย! 💌</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pop-up Modal เมื่อส่งสำเร็จ -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-box">
+            <span class="close-btn" id="closeModal">&times;</span>
+            
+            <div class="speech-bubble">
+                ขอบคุณนะ!<br>ได้รับคำอวยพรแล้ว!
+            </div>
+            
+            <!-- ใช้ไฟล์ ของขวัญ.jpg ที่อัปโหลดมา -->
+            <img src="ของขวัญ.png" alt="น้องมิโกะในกล่องของขวัญ" class="modal-image">
+        </div>
+    </div>
+
+    <script>
+        // --- ⚙️ จัดการ Pop-up ข้อตกลง ⚙️ ---
+        const agreementModal = document.getElementById('agreementModal');
+        const agreeBtn = document.getElementById('agreeBtn');
+
+        // เมื่อกดปุ่มยอมรับ ให้ซ่อน Pop-up นี้ไป (เข้าสู่หน้ากรอกฟอร์มได้)
+        agreeBtn.addEventListener('click', () => {
+            agreementModal.style.display = 'none';
+        });
+        // -----------------------------------
+
+        // --- ⚙️ ตั้งค่าลิงก์ Google Form (สำคัญมาก) ⚙️ ---
+        const FORM_ACTION_URL = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSev-VfOdzS70cUGQvHlTm2dVgqLsAdCb2bUe6sVRBdGfYRPCw/formResponse'; 
+        // ------------------------------------------------
+
+        const form = document.getElementById('mikoForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const modal = document.getElementById('successModal');
+        const closeModal = document.getElementById('closeModal');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            submitBtn.innerText = 'กำลังส่งไปหามิโกะ... 🐾';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+
+            fetch(FORM_ACTION_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            }).then(() => {
+                form.reset();
+                modal.style.display = 'flex';
+                submitBtn.innerText = 'ส่งคำอวยพรเลย! 💌';
+                submitBtn.disabled = false;
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('งื้ออ เกิดข้อผิดพลาดในการส่งข้อมูล ลองใหม่อีกครั้งนะเมี้ยว 😿');
+                submitBtn.innerText = 'ส่งคำอวยพรเลย! 💌';
+                submitBtn.disabled = false;
+            });
+        });
+
+        // กดปิด Modal ความสำเร็จ
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // กดพื้นที่สีดำด้านนอกเพื่อปิด Modal ความสำเร็จ
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
