@@ -453,7 +453,7 @@
         // ==========================================
         // ⚙️ นำ URL ของเว็บแอป (Web App URL) ที่ได้จาก Apps Script มาวางตรงนี้
         // ==========================================
-        const GAS_WEB_APP_URL = 'https://script.google.com/macros/u/4/s/AKfycbzflLhLgSfZVCVmkVPsDVQNq4KX3GhLZ0Ib44s1ZrPznXfsNQgUphp1kh9P94NDtN7f/exec'; 
+        const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzflLhLgSfZVCVmkVPsDVQNq4KX3GhLZ0Ib44s1ZrPznXfsNQgUphp1kh9P94NDtN7f/exec'; 
 
         const form = document.getElementById('giftForm');
         const submitBtn = document.getElementById('submitBtn');
@@ -506,6 +506,37 @@
                 form.reset();
                 modal.style.display = 'flex';
                 
+                // 🌟 เพิ่มลูกเล่นพลุฉลอง (Fireworks) ตรงนี้ 🌟
+                var duration = 4 * 1000; // พลุจุดนาน 4 วินาที
+                var animationEnd = Date.now() + duration;
+                var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 200 };
+
+                function randomInRange(min, max) {
+                    return Math.random() * (max - min) + min;
+                }
+
+                var interval = setInterval(function() {
+                    var timeLeft = animationEnd - Date.now();
+
+                    if (timeLeft <= 0) {
+                        return clearInterval(interval);
+                    }
+
+                    var particleCount = 50 * (timeLeft / duration);
+                    // ยิงพลุจาก 2 ฝั่งซ้ายขวา (สีพาสเทล)
+                    confetti(Object.assign({}, defaults, { 
+                        particleCount, 
+                        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, 
+                        colors: ['#fbcfe8', '#a7f3d0', '#f472b6', '#fef08a'] 
+                    }));
+                    confetti(Object.assign({}, defaults, { 
+                        particleCount, 
+                        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, 
+                        colors: ['#fbcfe8', '#a7f3d0', '#f472b6', '#fef08a'] 
+                    }));
+                }, 250);
+                // 🌟 จบส่วนลูกเล่นพลุฉลอง 🌟
+                     
             } catch (error) {
                 console.error('Error:', error);
                 alert('เกิดข้อผิดพลาดในการส่งข้อมูล ขนาดรูปภาพอาจจะใหญ่เกินไป ลองใหม่อีกครั้งนะเมี้ยว 😿');
@@ -522,5 +553,6 @@
     </script>
 </body>
 </html>
+
 
 
