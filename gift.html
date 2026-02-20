@@ -37,6 +37,17 @@
             position: relative;
         }
 
+        /* 🌟 1. เพิ่มลายจุดจางๆ ให้พื้นหลังดูไม่โล่ง 🌟 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.45) 2px, transparent 2px);
+            background-size: 30px 30px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
         #sakura-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -57,11 +68,51 @@
             100% { transform: translateY(110vh) translateX(20px) rotate(360deg) scale(1); opacity: 0; }
         }
 
+        /* 🌟 2. สไตล์สำหรับรูปตกแต่งซ้าย-ขวา (ซ่อนในมือถือ) 🌟 */
+        .side-deco {
+            display: none; /* ซ่อนเป็นค่าเริ่มต้น */
+            position: fixed;
+            border-radius: 20px;
+            border: 6px solid white;
+            box-shadow: 0 15px 35px rgba(244, 114, 182, 0.2);
+            z-index: 5;
+            pointer-events: none; /* ไม่ให้รูปบังการคลิกเมาส์ */
+        }
+
+        /* แสดงรูปตกแต่งเมื่อหน้าจอกว้างกว่า 1024px (จอคอมพิวเตอร์/แท็บเล็ตแนวนอน) */
+        @media (min-width: 1024px) {
+            .side-deco {
+                display: block;
+                width: 20vw; /* ขนาดสัมพันธ์กับความกว้างจอ */
+                max-width: 280px;
+            }
+            .left-deco {
+                top: 50%;
+                left: 5%;
+                animation: floatLeft 6s ease-in-out infinite;
+            }
+            .right-deco {
+                top: 50%;
+                right: 5%;
+                animation: floatRight 7s ease-in-out infinite;
+            }
+        }
+
+        @keyframes floatLeft {
+            0%, 100% { transform: translateY(-50%) rotate(-6deg); }
+            50% { transform: translateY(-55%) rotate(-2deg); }
+        }
+        @keyframes floatRight {
+            0%, 100% { transform: translateY(-50%) rotate(6deg); }
+            50% { transform: translateY(-45%) rotate(2deg); }
+        }
+
+        /* --- คอนเทนเนอร์หลัก --- */
         .wrapper {
             position: relative;
             z-index: 10;
             width: 90%;
-            max-width: 500px;
+            max-width: 450px;
             margin-top: 100px;
             margin-bottom: 40px;
         }
@@ -193,22 +244,18 @@
             border-radius: 20px;
             width: 90%;
             max-width: 450px;
-            /* แก้ไข: เอา max-height และ overflow-y ออกเพื่อไม่ให้กล่องบี้และตัดเนื้อหา */
             text-align: center;
             position: relative;
             animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
-
-        /* เพิ่มคลาสใหม่สำหรับจัดการเลื่อนอ่านเนื้อหาด้านใน */
+        
         .modal-scroll-content {
             max-height: 70vh;
             overflow-y: auto;
             overflow-x: hidden;
             padding: 5px 10px;
         }
-        
-        /* ตกแต่ง Scrollbar ให้ดูน่ารัก */
         .modal-scroll-content::-webkit-scrollbar { width: 6px; }
         .modal-scroll-content::-webkit-scrollbar-thumb { background-color: #fbcfe8; border-radius: 10px; }
 
@@ -221,7 +268,7 @@
             color: #999;
             cursor: pointer;
             line-height: 1;
-            z-index: 20; /* ดันให้อยู่บนสุด */
+            z-index: 20;
         }
 
         #agreementModal .modal-box { border: 4px solid var(--window-bar); padding: 20px 15px; }
@@ -256,8 +303,7 @@
 
         .speech-bubble {
             position: absolute;
-            top: -30px; 
-            right: 15px; /* ดึงเข้ามาด้านในนิดนึงเพื่อไม่ให้ขอบจอล้น */
+            top: -30px; right: 15px;
             background: white;
             border: 2px solid #86efac;
             border-radius: 50px;
@@ -279,17 +325,20 @@
 </head>
 <body>
 
+    <!-- ลายซากุระ -->
     <div id="sakura-container"></div>
+
+    <!-- 🌟 3. เพิ่มรูปตกแต่งลอยซ้าย-ขวา สำหรับ Desktop 🌟 -->
+    <img src="อร่อย.png" alt="Deco" class="side-deco left-deco" onerror="this.style.display='none'">
+    <img src="อารมณ์ดี.png" alt="Deco" class="side-deco right-deco" onerror="this.style.display='none'">
 
     <!-- Pop-up ข้อตกลงส่งของขวัญ -->
     <div class="modal-overlay" id="agreementModal" style="display: flex;">
         <div class="modal-box">
             <div class="speech-bubble" style="top: -20px; right: 10px;">รบกวนอ่านก่อนน้า~ 🎁</div>
             
-            <!-- เพิ่ม div คลุมเนื้อหาที่ต้องการให้เลื่อนอ่านได้ -->
             <div class="modal-scroll-content">
                 <img src="เหงื่อตก.png" alt="มิโกะ" class="modal-image" onerror="this.style.display='none'">
-                
                 <h2>ข้อตกลงในการส่งของขวัญ</h2>
                 
                 <div class="rules-content">
@@ -335,7 +384,7 @@
 
             <div class="form-content">
                 <h1>ส่งของขวัญให้แมวเขียว 🎁</h1>
-                <p style="text-align: center; color: #888; font-size: 0.95rem; margin-top: -15px; margin-bottom: 20px;">กรอกรายละเอียดของขวัญที่จะส่งให้มิโกะได้เลย~ 🐈</p>
+                <p style="text-align: center; color: #888; font-size: 0.95rem; margin-top: -15px; margin-bottom: 20px;">กรอกรายละเอียดของขวัญที่จะส่งให้มิโกะได้เลยเมี้ยว~ 🐈</p>
                 
                 <form id="giftForm">
                     <div class="form-group">
@@ -404,19 +453,18 @@
         // ==========================================
         // ⚙️ นำ URL ของเว็บแอป (Web App URL) ที่ได้จาก Apps Script มาวางตรงนี้
         // ==========================================
-        const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzflLhLgSfZVCVmkVPsDVQNq4KX3GhLZ0Ib44s1ZrPznXfsNQgUphp1kh9P94NDtN7f/exec'; 
+        const GAS_WEB_APP_URL = 'https://script.google.com/macros/u/4/s/AKfycbzflLhLgSfZVCVmkVPsDVQNq4KX3GhLZ0Ib44s1ZrPznXfsNQgUphp1kh9P94NDtN7f/exec'; 
 
         const form = document.getElementById('giftForm');
         const submitBtn = document.getElementById('submitBtn');
         const modal = document.getElementById('successModal');
         const closeModal = document.getElementById('closeModal');
 
-        // ฟังก์ชันอ่านไฟล์รูปภาพและแปลงเป็น Base64
         const getBase64 = (file) => {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
                 reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result.split(',')[1]); // เอาเฉพาะส่วนข้อมูล
+                reader.onload = () => resolve(reader.result.split(',')[1]);
                 reader.onerror = error => reject(error);
             });
         };
@@ -428,15 +476,12 @@
             submitBtn.disabled = true;
 
             try {
-                // ดึงไฟล์จากช่อง Input
                 const giftPicFile = document.getElementById('giftPic').files[0];
                 const proofPicFile = document.getElementById('proofPic').files[0];
 
-                // แปลงไฟล์เป็น Base64
                 const giftPicBase64 = await getBase64(giftPicFile);
                 const proofPicBase64 = await getBase64(proofPicFile);
 
-                // สร้างชุดข้อมูลที่จะส่งไป
                 const payload = {
                     youtubeName: document.getElementById('youtubeName').value,
                     senderName: document.getElementById('senderName').value,
@@ -453,19 +498,17 @@
                     }
                 };
 
-                // ยิงข้อมูลไปที่ Google Apps Script
                 await fetch(GAS_WEB_APP_URL, {
                     method: 'POST',
                     body: JSON.stringify(payload)
                 });
 
-                // รีเซ็ตฟอร์มและแสดงหน้าต่างความสำเร็จ
                 form.reset();
                 modal.style.display = 'flex';
                 
             } catch (error) {
                 console.error('Error:', error);
-                alert('เกิดข้อผิดพลาดในการส่งข้อมูล ขนาดรูปภาพอาจจะใหญ่เกินไป ลองใหม่อีกครั้งนะ 😿');
+                alert('เกิดข้อผิดพลาดในการส่งข้อมูล ขนาดรูปภาพอาจจะใหญ่เกินไป ลองใหม่อีกครั้งนะเมี้ยว 😿');
             } finally {
                 submitBtn.innerText = 'แจ้งส่งของขวัญเลย! 🎀';
                 submitBtn.disabled = false;
@@ -478,6 +521,4 @@
         });
     </script>
 </body>
-
 </html>
-
