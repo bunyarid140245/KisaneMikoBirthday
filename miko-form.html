@@ -455,7 +455,37 @@
                 submitBtn.disabled = false;
             });
         });
+                // 🌟 เพิ่มลูกเล่นพลุฉลอง (Fireworks) ตรงนี้ 🌟
+                var duration = 4 * 1000; // พลุจุดนาน 4 วินาที
+                var animationEnd = Date.now() + duration;
+                var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 200 };
 
+                function randomInRange(min, max) {
+                    return Math.random() * (max - min) + min;
+                }
+
+                var interval = setInterval(function() {
+                    var timeLeft = animationEnd - Date.now();
+
+                    if (timeLeft <= 0) {
+                        return clearInterval(interval);
+                    }
+
+                    var particleCount = 50 * (timeLeft / duration);
+                    // ยิงพลุจาก 2 ฝั่งซ้ายขวา (สีพาสเทล)
+                    confetti(Object.assign({}, defaults, { 
+                        particleCount, 
+                        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, 
+                        colors: ['#fbcfe8', '#a7f3d0', '#f472b6', '#fef08a'] 
+                    }));
+                    confetti(Object.assign({}, defaults, { 
+                        particleCount, 
+                        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, 
+                        colors: ['#fbcfe8', '#a7f3d0', '#f472b6', '#fef08a'] 
+                    }));
+                }, 250);
+                // 🌟 จบส่วนลูกเล่นพลุฉลอง 🌟
+                     
         // กดปิด Modal ความสำเร็จ
         closeModal.addEventListener('click', () => {
             modal.style.display = 'none';
@@ -471,4 +501,5 @@
 </body>
 
 </html>
+
 
