@@ -76,13 +76,31 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* โลโก้ */
-        .logo-image {
+        /* 🌟 โลโก้มุมซ้ายบน 🌟 */
+        .top-left-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 50;
+            width: 100px; /* ขนาดสำหรับจอมือถือ */
+            transition: transform 0.3s;
+        }
+        @media (min-width: 768px) {
+            .top-left-logo {
+                width: 150px; /* ขนาดสำหรับจอคอมพิวเตอร์/แท็บเล็ต */
+                top: 30px;
+                left: 30px;
+            }
+        }
+        .top-left-logo:hover {
+            transform: scale(1.05) rotate(-3deg);
+        }
+        .top-left-logo img {
             width: 100%;
-            max-width: 200px;
-            margin: 0 auto 15px;
+            height: auto;
             display: block;
-            border-radius: 15px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
         }
 
         /* รูปหน้าปก (เค้กวันเกิด) */
@@ -304,6 +322,11 @@
     <img src="อร่อย.png" alt="Deco" class="side-deco left-deco" onerror="this.style.display='none'">
     <img src="อารมณ์ดี.png" alt="Deco" class="side-deco right-deco" onerror="this.style.display='none'">
     
+    <!-- 🌟 โลโก้มุมซ้ายบน (คลิกไป Youtube) 🌟 -->
+    <a href="https://www.youtube.com/@KisaneMikoCh" target="_blank" class="top-left-logo">
+        <img src="logo_01.png" alt="Kisane Miko YouTube" onerror="this.style.display='none'">
+    </a>
+
     <!-- ซากุระร่วง -->
     <div id="sakura-container"></div>
     <script>
@@ -322,9 +345,6 @@
 
     <!-- การ์ดต้อนรับ -->
     <div class="welcome-card">
-        <!-- 🌟 โลโก้ด้านบน 🌟 -->
-        <img src="logo_01.png" alt="Logo" class="logo-image" onerror="this.style.display='none'">
-        
         <!-- ใช้รูป HappyBirthday.png เป็นรูปหลัก -->
         <img src="HappyBirthday.png" alt="มิโกะกับเค้กวันเกิด" class="cover-image" onerror="this.style.display='none'">
         
@@ -351,10 +371,10 @@
                 <div class="rules-text-box">
                     <p><strong>❌ ข้อห้ามในการส่งเป็นของขวัญ:</strong></p>
                     <ul>
-                        <li>อาหารที่เสียง่าย</li>
+                        <li>อาหาร / น้ำ / ขนม</li>
                         <li>ภาพ AI</li>
-                        <li>การดัดแปลงภาพหรือสื่อของผู้อื่น</li>
-                        <li>สิ่งลามกอนาจาร(ทีมงานไม่อนุญาตให้นำมาแสดงในไลฟ์)</li>
+                        <li>ดัดแปลงภาพหรือสื่อของผู้อื่น</li>
+                        <li>สิ่งลามกอนาจาร (ทีมงานไม่อนุญาตให้นำมาแสดงในไลฟ์)</li>
                     </ul>
 
                     <p><strong>📦 การจัดส่ง:</strong></p>
@@ -366,8 +386,13 @@
 
                     <p style="text-align: center; color: #991b1b; background: #fee2e2; padding: 10px; border-radius: 8px; margin-top: 15px; font-weight: 600;">
                         เปิดรับถึงวันที่ 15 เมษายน 2569 📆<br>
-                        <span style="font-size: 1rem; font-weight: 400; color: #4b5563;">หากมีข้อสงสัยติดต่อ Discord<br> <a href="https://discord.gg/srWZ2hxk" target="_blank" style="color: #db2777; text-decoration: underline; font-weight: 700; font-size: 1.5rem; display: inline-block; margin-top: 5px;">ศาลเจ้า Kisane Miko</a></span>
+                        <span style="font-size: 0.85rem; font-weight: 400; color: #4b5563;">หากมีข้อสงสัยติดต่อ Discord: <a href="https://discord.gg/srWZ2hxk" target="_blank" style="color: #db2777; text-decoration: underline; font-weight: 700; font-size: 1.15rem; display: inline-block; margin-top: 5px;">ศาลเจ้า Kisane Miko</a></span>
+                    </p>
                 </div>
+
+                <!-- แทรกรูปโปสเตอร์ไว้ด้านล่างให้อ่านแบบ Original ได้ -->
+                <img src="Light Grayish Orange Happy Birthday Poster.jpg" alt="กฎการส่งของขวัญ" style="width: 100%; border-radius: 10px; margin-bottom: 15px;" onerror="this.style.display='none'">
+
                 <!-- ปุ่มกดยอมรับเพื่อปิดหน้าต่างแล้วใช้งานเว็บต่อ -->
                 <button class="gift-btn" id="acceptGiftRulesBtn" style="width: 100%; padding: 12px; font-size: 1.1rem; color: #166534;">รับทราบและตกลง 🌸</button>
             </div>
