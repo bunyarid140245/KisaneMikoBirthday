@@ -3,289 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>โปรเจกต์ของมิโกะ 2026</title>
+    <title>วันเกิดของมิโกะ 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Mali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <!-- Google Identity Services Library -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <style>
         :root {
-            --bg-top: #dbeafe;
-            --bg-bottom: #fce7f3;
-            --window-bar: #fbcfe8;
-            --text-dark: #4b5563;
-            --input-bg: #fff5f8;
-            --input-border: #f9a8d4;
-            --btn-bg: #f472b6;
-            --btn-hover: #db2777;
-            --btn-gift-bg: #a7f3d0; 
-            --btn-gift-hover: #6ee7b7;
-            --btn-gift-text: #166534;
-            --warning-bg: #fee2e2;
-            --warning-text: #991b1b;
+            --bg-top: #dbeafe; --bg-bottom: #fce7f3; --window-bar: #fbcfe8;
+            --text-dark: #4b5563; --input-bg: #fff5f8; --input-border: #f9a8d4;
+            --btn-bg: #f472b6; --btn-hover: #db2777;
+            --btn-gift-bg: #a7f3d0; --btn-gift-hover: #6ee7b7; --btn-gift-text: #166534;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Mali', cursive; }
-
-        body {
-            background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        body::before {
-            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.45) 2px, transparent 2px);
-            background-size: 30px 30px; z-index: 0; pointer-events: none;
-        }
-
+        body { background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%); background-attachment: fixed; min-height: 100vh; position: relative; overflow-x: hidden; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(rgba(255, 255, 255, 0.45) 2px, transparent 2px); background-size: 30px 30px; z-index: 0; pointer-events: none; }
+        
         #sakura-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 1; }
         .sakura { position: absolute; background-color: #ffb7c5; border-radius: 100% 0% 100% 0%; opacity: 0.6; animation: fall linear infinite; }
-        @keyframes fall { 0% { transform: translateY(-10vh) translateX(0) rotate(0deg) scale(0.5); opacity: 0; } 10% { opacity: 0.8; } 100% { transform: translateY(110vh) translateX(20px) rotate(360deg) scale(1); opacity: 0; } }
+        @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
 
-        .side-deco { display: none; position: fixed; border-radius: 20px; border: 6px solid white; box-shadow: 0 15px 35px rgba(244, 114, 182, 0.2); z-index: 5; pointer-events: none; }
-        @media (min-width: 1024px) { .side-deco { display: block; width: 18vw; max-width: 220px; } .left-deco { top: 50%; left: 5%; animation: floatLeft 6s ease-in-out infinite; } .right-deco { top: 50%; right: 5%; animation: floatRight 7s ease-in-out infinite; } }
+        /* 🌟 ตัวละครลอยข้างๆ (Side Deco) 🌟 */
+        .side-deco { display: none; position: fixed; border-radius: 20px; border: 6px solid white; box-shadow: 0 15px 35px rgba(244, 114, 182, 0.2); z-index: 5; pointer-events: none; transition: all 0.5s ease-in-out; }
+        @media (min-width: 1024px) { 
+            .side-deco { display: block; width: 18vw; max-width: 220px; } 
+            .left-deco { top: 50%; left: 5%; animation: floatLeft 6s ease-in-out infinite; } 
+            .right-deco { top: 50%; right: 5%; animation: floatRight 7s ease-in-out infinite; } 
+        }
         @keyframes floatLeft { 0%, 100% { transform: translateY(-50%) rotate(-6deg); } 50% { transform: translateY(-55%) rotate(-2deg); } }
         @keyframes floatRight { 0%, 100% { transform: translateY(-50%) rotate(6deg); } 50% { transform: translateY(-45%) rotate(2deg); } }
 
-        .main-wrapper { position: relative; z-index: 10; width: 100%; display: flex; flex-direction: column; align-items: center; padding: 30px 0; }
-        
-        .center-logo { display: flex; flex-direction: column; align-items: center; width: 90%; max-width: 300px; margin: 0 auto 120px; transition: transform 0.3s; text-decoration: none; cursor: pointer; }
-        .center-logo:hover { transform: scale(1.03) rotate(-2deg); }
-        .center-logo img { width: 100%; height: auto; display: block; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        
-        .channel-name { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; font-size: 1.2rem; font-weight: 700; color: #db2777; background-color: white; padding: 8px 25px; border-radius: 50px; border: 3px solid #fbcfe8; box-shadow: 0 6px 15px rgba(244, 114, 182, 0.2); }
+        .main-wrapper { display: flex; flex-direction: column; align-items: center; padding: 40px 0; position: relative; z-index: 10; width: 100%; }
 
-        /* การจัดการหน้า (Sections) */
-        .section-container { display: none; width: 100%; flex-direction: column; align-items: center; animation: fadeIn 0.5s ease-in-out; }
-        .section-active { display: flex; }
+        .center-logo { display: flex; flex-direction: column; align-items: center; width: 90%; max-width: 300px; margin-bottom: 120px; text-decoration: none; cursor: pointer; transition: 0.3s; }
+        .center-logo:hover { transform: scale(1.03) rotate(-2deg); }
+        .center-logo img { width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .channel-name { margin-top: 15px; background: white; padding: 8px 25px; border-radius: 50px; border: 3px solid #fbcfe8; color: #db2777; font-weight: 700; display: flex; align-items: center; gap: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+        /* การจัดการส่วนหน้าต่าง */
+        .section { display: none; width: 90%; max-width: 450px; animation: fadeIn 0.5s ease; }
+        .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
-        .wrapper { position: relative; width: 90%; max-width: 450px; margin-bottom: 40px; }
-        .top-character { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); width: 150px; margin-bottom: -22px; z-index: 12; pointer-events: none; }
+        .wrapper { position: relative; width: 100%; }
+        .top-character { position: absolute; bottom: calc(100% - 22px); left: 50%; transform: translateX(-50%); width: 150px; z-index: 12; pointer-events: none; }
         
-        .window-box { background-color: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; border: 3px solid var(--window-bar); }
-        .window-header { background-color: var(--window-bar); height: 30px; display: flex; align-items: center; padding: 0 15px; gap: 6px; }
+        .window-box { background: white; border-radius: 15px; border: 3px solid var(--window-bar); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .window-header { background: var(--window-bar); height: 30px; display: flex; align-items: center; padding: 0 15px; gap: 6px; }
         .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .dot.red { background-color: #ff5f56; }
-        .dot.yellow { background-color: #ffbd2e; }
-        .dot.green { background-color: #27c93f; }
+        .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
 
-        .content-box { padding: 30px 25px; text-align: center; }
-        .cover-image { width: 100%; max-width: 250px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+        .content { padding: 30px 25px; text-align: center; }
+        h1 { color: #db2777; font-size: 1.5rem; margin-bottom: 15px; font-weight: 700; }
+        .cover-img { width: 100%; max-width: 250px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+
+        .action-btn { display: block; width: 100%; padding: 15px; border-radius: 50px; border: none; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.3s; margin-bottom: 15px; position: relative; overflow: hidden; }
+        .btn-pink { background: var(--btn-bg); color: white; box-shadow: 0 5px 15px rgba(244, 114, 182, 0.4); }
+        .btn-green { background: var(--btn-gift-bg); color: var(--btn-gift-text); box-shadow: 0 5px 15px rgba(167, 243, 208, 0.4); }
+        .action-btn:hover:not(:disabled) { transform: translateY(-3px); opacity: 0.9; }
+        .action-btn:disabled { background: #e5e7eb; color: #9ca3af; cursor: not-allowed; transform: none; }
+
+        .form-group { text-align: left; margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 700; font-size: 0.9rem; color: var(--text-dark); }
+        input, textarea { width: 100%; padding: 12px; border: 2px solid var(--input-border); border-radius: 10px; background: var(--input-bg); font-size: 1rem; color: var(--text-dark); outline: none; }
+        input:focus, textarea:focus { background: white; border-color: var(--btn-bg); }
         
-        h1 { color: #db2777; font-size: 1.6rem; margin-bottom: 10px; font-weight: 700; }
-        p.subtitle { color: var(--text-dark); font-size: 1.05rem; margin-bottom: 25px; line-height: 1.6; }
-
-        .action-btn { display: block; padding: 15px 30px; font-size: 1.2rem; font-weight: 600; border-radius: 50px; border: none; cursor: pointer; transition: all 0.3s; width: 100%; margin-bottom: 15px; position: relative; }
-        .btn-pink { background-color: var(--btn-bg); color: white; box-shadow: 0 6px 15px rgba(244, 114, 182, 0.4); }
-        .btn-green { background-color: var(--btn-gift-bg); color: var(--btn-gift-text); box-shadow: 0 6px 15px rgba(167, 243, 208, 0.5); }
-        .action-btn:hover { transform: translateY(-3px); opacity: 0.9; }
-
-        /* สไตล์ฟอร์ม */
-        .form-group { margin-bottom: 15px; text-align: left; }
-        label { display: block; margin-bottom: 5px; font-size: 0.9rem; font-weight: 700; color: var(--text-dark); }
-        input[type="text"], textarea, input[type="file"] { width: 100%; padding: 12px; border: 2px solid var(--input-border); border-radius: 10px; background: var(--input-bg); font-size: 1rem; }
-        textarea { height: 100px; resize: vertical; }
-
-        /* Login Overlay */
-        #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
-        
-        /* Modal */
+        /* 🔒 Login & Modals */
+        #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; }
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 200; justify-content: center; align-items: center; }
-        .modal-box { background: white; padding: 25px; border-radius: 20px; width: 90%; max-width: 400px; text-align: center; position: relative; }
+        .modal-box { background: white; padding: 35px 25px; border-radius: 20px; width: 90%; max-width: 400px; text-align: center; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
         .close-btn { position: absolute; top: 10px; right: 20px; font-size: 2rem; color: #999; cursor: pointer; }
+
+        /* 💬 Speech Bubble 💬 */
+        .speech-bubble {
+            position: absolute; background: white; border: 2.5px solid #86efac; border-radius: 50px;
+            padding: 10px 20px; color: #166534; font-weight: 700; font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 101; transform: rotate(5deg);
+        }
+        .speech-bubble::after {
+            content: ''; position: absolute; bottom: -12px; left: 25px;
+            border-width: 12px 12px 0 0; border-style: solid;
+            border-color: #86efac transparent transparent transparent;
+        }
+
+        .back-link { display: inline-block; margin-top: 10px; color: #9ca3af; text-decoration: underline; cursor: pointer; font-size: 0.9rem; }
+        .back-link:hover { color: var(--btn-hover); }
     </style>
 </head>
 <body>
 
-    <!-- 🌟 ส่วนล็อกอิน (แสดงเป็นอย่างแรก) 🌟 -->
+    <!-- 🔒 ด่านแรก: ล็อกอิน Google -->
     <div id="loginOverlay">
         <img src="logo_01.png" style="width: 150px; border-radius: 20px; margin-bottom: 20px;" onerror="this.style.display='none'">
-        <h2 style="color: #db2777; margin-bottom: 10px;">ศาลเจ้า Kisane Miko</h2>
-        <p style="margin-bottom: 30px; color: #666;">กรุณาเข้าสู่ระบบด้วย Gmail เพื่อดำเนินการต่อค่ะ 🐈</p>
+        <h2 style="color: #db2777;">ศาลเจ้า Kisane Miko</h2>
+        <p style="color: #666; margin: 15px 0 30px;">กรุณาล็อกอิน Gmail เพื่อเข้าสู่ระบบค่ะ 🐈</p>
         <div id="googleBtn"></div>
     </div>
 
     <div id="sakura-container"></div>
-    <img src="donate_miko_03.png" alt="Deco" class="side-deco left-deco" onerror="this.style.display='none'">
-    <img src="โกรธ.png" alt="Deco" class="side-deco right-deco" onerror="this.style.display='none'">
+    
+    <!-- 🌟 ตัวละครตกแต่งซ้าย-ขวา 🌟 -->
+    <img id="decoLeft" src="อร่อย.png" alt="Deco" class="side-deco left-deco" onerror="this.style.display='none'">
+    <img id="decoRight" src="อารมณ์ดี.png" alt="Deco" class="side-deco right-deco" onerror="this.style.display='none'">
 
-    <div class="main-wrapper" id="mainContent" style="display: none;">
-        
+    <div class="main-wrapper" id="mainUI" style="display: none;">
+        <!-- โลโก้กลาง -->
         <a href="#" class="center-logo" onclick="openYouTubeApp(event)">
-            <img src="logo_01.png" alt="Kisane Miko" onerror="this.style.display='none'">
+            <img src="logo_01.png" onerror="this.style.display='none'">
             <div class="channel-name">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FF0000"/></svg>
                 <span>Kisane Miko</span>
             </div>
         </a>
 
-        <!-- Section: Home -->
-        <div id="homeSec" class="section-container section-active">
+        <!-- ================= SECTION: HOME ================= -->
+        <div id="homeSec" class="section active">
             <div class="wrapper">
                 <img src="รูปมิโกะพื้นหลังใส.png" class="top-character" onerror="this.style.display='none'">
                 <div class="window-box">
                     <div class="window-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                    <div class="content-box">
-                        <img src="HappyBirthday.png" class="cover-image" onerror="this.style.display='none'">
-                        <h1>สุขสันต์วันเกิดให้มิโกะ 🐈💚</h1>
-                        <p class="subtitle">ล็อกอินแล้วโดย: <span id="userDisp" style="font-weight: 700; color: #db2777;"></span></p>
-                        <button class="action-btn btn-pink" onclick="navigate('wishSec')">เริ่มเขียนคำอวยพร 💌</button>
-                        <button class="action-btn btn-green" onclick="navigate('giftSec')">ส่งของขวัญให้มิโกะ 🎁</button>
+                    <div class="content">
+                        <img src="HappyBirthday.png" class="cover-img" onerror="this.style.display='none'">
+                        <h1>วันเกิดมิโกะ 2026 🐈💚</h1>
+                        <p style="font-size: 0.85rem; color: #999; margin-bottom: 25px;">ล็อกอินแล้ว: <span id="userMail" style="font-weight: 700; color: #db2777;"></span></p>
+                        <button class="action-btn btn-pink" onclick="go('wishSec')">เริ่มเขียนคำอวยพร 💌</button>
+                        <button class="action-btn btn-green" onclick="go('giftSec')">ส่งของขวัญให้มิโกะ 🎁</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Section: Wish -->
-        <div id="wishSec" class="section-container">
+        <!-- ================= SECTION: WISH ================= -->
+        <div id="wishSec" class="section">
             <div class="wrapper">
                 <img src="รูปมิโกะพื้นหลังใส.png" class="top-character" onerror="this.style.display='none'">
                 <div class="window-box">
                     <div class="window-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                    <div class="content-box">
+                    <div class="content">
                         <h1>คำอวยพรให้มิโกะ 💌</h1>
                         <form id="wishForm">
-                            <div class="form-group"><label>ชื่อใน Youtube</label><input type="text" id="wishYT" required></div>
-                            <div class="form-group"><label>คำอวยพร</label><textarea id="wishMsg" required></textarea></div>
-                            <button type="submit" class="action-btn btn-pink" id="wishBtn">ส่งคำอวยพรเลย!</button>
+                            <div class="form-group"><label>ชื่อใน Youtube</label><input type="text" id="wYT" required placeholder="ชื่อช่องของคุณ..."></div>
+                            <div class="form-group"><label>คำอวยพร</label><textarea id="wMsg" rows="4" required placeholder="พิมพ์สิ่งดีๆ ให้น้องแมวเขียว..."></textarea></div>
+                            <button type="submit" class="action-btn btn-pink" id="wBtn">ส่งคำอวยพรเลย!</button>
                         </form>
-                        <a href="#" onclick="navigate('homeSec')" style="color: #999; font-size: 0.8rem;">⬅️ กลับหน้าหลัก</a>
+                        <span class="back-link" onclick="go('homeSec')">กลับหน้าหลัก</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Section: Gift -->
-        <div id="giftSec" class="section-container">
+        <!-- ================= SECTION: GIFT ================= -->
+        <div id="giftSec" class="section">
             <div class="wrapper">
                 <img src="รูปมิโกะพื้นหลังใส.png" class="top-character" onerror="this.style.display='none'">
                 <div class="window-box">
                     <div class="window-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                    <div class="content-box">
+                    <div class="content">
                         <h1>ส่งของขวัญให้มิโกะ 🎁</h1>
                         <form id="giftForm">
-                            <div class="form-group"><label>ชื่อใน Youtube</label><input type="text" id="giftYT" required></div>
-                            <div class="form-group"><label>ชื่อผู้ส่ง (จ่าหน้ากล่อง)</label><input type="text" id="sender" required></div>
-                            <div class="form-group"><label>รายละเอียดของขวัญ</label><textarea id="detail" required></textarea></div>
-                            <div class="form-group"><label>รูปของขวัญ (เลือกได้หลายรูป)</label><input type="file" id="pics" multiple required></div>
-                            <div class="form-group"><label>รูปหลักฐานการส่ง (เลือกได้หลายรูป)</label><input type="file" id="proofs" multiple required></div>
-                            <button type="submit" class="action-btn btn-green" id="giftBtn">แจ้งส่งของขวัญ!</button>
+                            <div class="form-group"><label>ชื่อใน Youtube</label><input type="text" id="gYT" required placeholder="ชื่อช่องของคุณ..."></div>
+                            <div class="form-group"><label>ชื่อผู้ส่งพัสดุ</label><input type="text" id="gName" required placeholder="ชื่อที่จ่าหน้ากล่อง..."></div>
+                            <div class="form-group"><label>รายละเอียดของขวัญ</label><textarea id="gDetail" rows="3" required placeholder="เช่น ตุ๊กตาแมว, การ์ดทำมือ..."></textarea></div>
+                            <div class="form-group"><label>รูปของขวัญ (เลือกได้หลายรูป)</label><input type="file" id="gPics" multiple required accept="image/*"></div>
+                            <div class="form-group"><label>หลักฐานการส่ง (เลือกได้หลายรูป)</label><input type="file" id="gProofs" multiple required accept="image/*"></div>
+                            <button type="submit" class="action-btn btn-green" id="gBtn">แจ้งส่งของขวัญ!</button>
                         </form>
-                        <a href="#" onclick="navigate('homeSec')" style="color: #999; font-size: 0.8rem;">⬅️ กลับหน้าหลัก</a>
+                        <span class="back-link" onclick="go('homeSec')">กลับหน้าหลัก</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Success Modal -->
+    <!-- 🌟 MODAL: SUCCESS (พร้อม Bubble) 🌟 -->
     <div class="modal-overlay" id="successModal">
-        <div class="modal-box">
-            <span class="close-btn" onclick="this.parentElement.parentElement.style.display='none'">&times;</span>
-            <h2 style="color: #27c93f; margin-bottom: 15px;">ส่งข้อมูลสำเร็จแล้ว! ✨</h2>
-            <img src="ของขวัญ.png" style="width: 200px; border-radius: 15px;" onerror="this.style.display='none'">
-            <p style="margin-top: 15px;">ขอบคุณที่ร่วมเป็นส่วนหนึ่งในวันเกิดมิโกะนะคะ 🐈💚</p>
+        <div class="modal-box" style="border: 4px solid #6ee7b7;">
+            <span class="close-btn" onclick="document.getElementById('successModal').style.display='none'">&times;</span>
+            
+            <div class="speech-bubble" style="top: -20px; right: 5px;">
+                ขอบคุณนะ!<br>ได้รับข้อมูลแล้ว!
+            </div>
+            
+            <h2 style="color: #27c93f; margin-top: 20px;">ส่งสำเร็จแล้ว! ✨</h2>
+            <img src="ของขวัญ.png" style="width: 100%; max-width: 250px; border-radius: 15px; margin-top: 15px;" onerror="this.style.display='none'">
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #4b5563;">มิโกะได้รับความรักของคุณแล้วนะเมี้ยว~ 🐈💚</p>
+            <button class="action-btn btn-pink" onclick="location.reload()" style="margin-top: 20px; padding: 10px; font-size: 1rem;">ปิดหน้าต่าง</button>
         </div>
     </div>
 
     <script>
-        // ⚙️ ตั้งค่าข้อมูลของคุณตรงนี้ ⚙️
-        const GOOGLE_CLIENT_ID = "506840275210-d97qjm02ls2g6mlksi327a7le53tidvo.apps.googleusercontent.com";
-        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxNA2-sUavxI7c5aNBzzXYMEI2WGR5UOOIjh4WfBjuaGfGe6-IBDdXNbspn6QGvteDP/exec";
+        // ⚙️ ตั้งค่า Client ID ของคุณ ⚙️
+        const CLIENT_ID = "506840275210-d97qjm02ls2g6mlksi327a7le53tidvo.apps.googleusercontent.com";
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbzflLhLgSfZVCVmkVPsDVQNq4KX3GhLZ0Ib44s1ZrPznXfsNQgUphp1kh9P94NDtN7f/exec";
+        
+        let email = "";
 
-        let userEmail = "";
-
-        // ระบบ Login
-        window.onload = function () {
-            google.accounts.id.initialize({
-                client_id: GOOGLE_CLIENT_ID,
-                callback: handleCredentialResponse
-            });
-            google.accounts.id.renderButton(
-                document.getElementById("googleBtn"),
-                { theme: "outline", size: "large", text: "signin_with", shape: "pill" }
-            );
+        // 🌟 ตั้งค่าตัวละครแต่ละหน้า 🌟
+        const decoConfig = {
+            homeSec: { left: "อร่อย.png", right: "อารมณ์ดี.png" },
+            wishSec: { left: "donate_miko_03.png", right: "โกรธ.png" },
+            giftSec: { left: "donate_miko_02.png", right: "นอน.png" }
         };
 
-        function handleCredentialResponse(response) {
-            const payload = JSON.parse(atob(response.credential.split('.')[1]));
-            userEmail = payload.email;
-            document.getElementById('userDisp').innerText = userEmail;
-            document.getElementById('loginOverlay').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'flex';
-            initSakura();
+        window.onload = () => {
+            google.accounts.id.initialize({
+                client_id: CLIENT_ID,
+                callback: res => {
+                    const payload = JSON.parse(atob(res.credential.split('.')[1]));
+                    email = payload.email;
+                    document.getElementById('userMail').innerText = email;
+                    document.getElementById('loginOverlay').style.display = 'none';
+                    document.getElementById('mainUI').style.display = 'flex';
+                    startSakura();
+                }
+            });
+            google.accounts.id.renderButton(document.getElementById("googleBtn"), { theme: "outline", size: "large", shape: "pill", text: "signin_with" });
+        };
+
+        // 🌟 ฟังก์ชันเปลี่ยนหน้า + เปลี่ยนตัวละคร 🌟
+        function go(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            
+            // เปลี่ยนรูปตัวละคร
+            if(decoConfig[id]) {
+                document.getElementById('decoLeft').src = decoConfig[id].left;
+                document.getElementById('decoRight').src = decoConfig[id].right;
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function navigate(id) {
-            document.querySelectorAll('.section-container').forEach(s => s.classList.remove('section-active'));
-            document.getElementById(id).classList.add('section-active');
-        }
-
-        // ฟังก์ชันแปลงไฟล์
-        const getBase64 = (file) => new Promise((res, rej) => {
-            const reader = new FileReader(); reader.readAsDataURL(file);
-            reader.onload = () => res({ filename: file.name, mimeType: file.type, data: reader.result.split(',')[1] });
-            reader.onerror = e => rej(e);
+        const toB64 = f => new Promise(res => {
+            const r = new FileReader(); r.readAsDataURL(f);
+            r.onload = () => res({ filename: f.name, mimeType: f.type, data: r.result.split(',')[1] });
         });
 
-        // ส่งฟอร์ม Wish
-        document.getElementById('wishForm').onsubmit = async (e) => {
+        // ส่ง Wish
+        document.getElementById('wishForm').onsubmit = async e => {
             e.preventDefault();
-            const btn = document.getElementById('wishBtn');
-            btn.disabled = true; btn.innerText = "กำลังส่ง... 🐾";
-            
-            const data = {
-                type: 'wish',
-                email: userEmail,
-                youtubeName: document.getElementById('wishYT').value,
-                wishContent: document.getElementById('wishMsg').value
-            };
-
-            await fetch(GAS_WEB_APP_URL, { method: 'POST', body: JSON.stringify(data) });
-            showSuccess();
+            const btn = document.getElementById('wBtn'); btn.disabled = true; btn.innerText = "กำลังส่งคำอวยพร... 🐾";
+            const data = { type: 'wish', email, youtubeName: document.getElementById('wYT').value, wishContent: document.getElementById('wMsg').value };
+            try {
+                await fetch(GAS_URL, { method: 'POST', body: JSON.stringify(data) });
+                document.getElementById('successModal').style.display = 'flex';
+            } catch(e) { alert("เกิดข้อผิดพลาด ลองใหม่อีกครั้งนะเมี้ยว"); }
             btn.disabled = false; btn.innerText = "ส่งคำอวยพรเลย!";
         };
 
-        // ส่งฟอร์ม Gift
-        document.getElementById('giftForm').onsubmit = async (e) => {
+        // ส่ง Gift
+        document.getElementById('giftForm').onsubmit = async e => {
             e.preventDefault();
-            const btn = document.getElementById('giftBtn');
-            btn.disabled = true; btn.innerText = "กำลังอัปโหลด... 📦";
-
-            const data = {
-                type: 'gift',
-                email: userEmail,
-                youtubeName: document.getElementById('giftYT').value,
-                senderName: document.getElementById('sender').value,
-                giftDetail: document.getElementById('detail').value,
-                giftPics: await Promise.all([...document.getElementById('pics').files].map(getBase64)),
-                proofPics: await Promise.all([...document.getElementById('proofs').files].map(getBase64))
-            };
-
-            await fetch(GAS_WEB_APP_URL, { method: 'POST', body: JSON.stringify(data) });
-            showSuccess();
+            const btn = document.getElementById('gBtn'); btn.disabled = true; btn.innerText = "กำลังอัปโหลดรูปภาพ... 📦";
+            try {
+                const data = {
+                    type: 'gift', email,
+                    youtubeName: document.getElementById('gYT').value,
+                    senderName: document.getElementById('gName').value,
+                    giftDetail: document.getElementById('gDetail').value,
+                    giftPics: await Promise.all([...document.getElementById('gPics').files].map(toB64)),
+                    proofPics: await Promise.all([...document.getElementById('gProofs').files].map(toB64))
+                };
+                await fetch(GAS_URL, { method: 'POST', body: JSON.stringify(data) });
+                document.getElementById('successModal').style.display = 'flex';
+                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#fbcfe8', '#a7f3d0', '#f472b6'] });
+            } catch(e) { alert("ไฟล์อาจใหญ่เกินไป หรือเกิดข้อผิดพลาด ลองใหม่อีกครั้งนะ"); }
             btn.disabled = false; btn.innerText = "แจ้งส่งของขวัญ!";
         };
 
-        function showSuccess() {
-            document.getElementById('successModal').style.display = 'flex';
-            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-        }
-
-        function initSakura() {
-            const container = document.getElementById('sakura-container');
-            for(let i=0; i<15; i++) {
+        function startSakura() {
+            const c = document.getElementById('sakura-container');
+            for(let i=0; i<18; i++) {
                 let s = document.createElement('div'); s.className = 'sakura';
                 s.style.left = Math.random() * 100 + 'vw';
-                s.style.width = s.style.height = (Math.random() * 10 + 10) + 'px';
-                s.style.animationDuration = (Math.random() * 5 + 5) + 's';
-                container.appendChild(s);
+                s.style.width = s.style.height = (Math.random() * 12 + 10) + 'px';
+                s.style.animationDuration = (Math.random() * 6 + 4) + 's';
+                s.style.animationDelay = (Math.random() * 5) + 's';
+                c.appendChild(s);
             }
         }
 
@@ -302,4 +295,3 @@
     </script>
 </body>
 </html>
-
