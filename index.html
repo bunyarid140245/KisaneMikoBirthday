@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>วันเกิดของมิโกะ2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>โปรเจกต์ของมิโกะ 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Identity Services Library -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <style>
         :root {
-            --bg-top: #dbeafe; /* ฟ้าอ่อน */
-            --bg-bottom: #fce7f3; /* ชมพูอ่อน */
+            --bg-top: #dbeafe;
+            --bg-bottom: #fce7f3;
             --window-bar: #fbcfe8;
             --text-dark: #4b5563;
+            --input-bg: #fff5f8;
+            --input-border: #f9a8d4;
             --btn-bg: #f472b6;
             --btn-hover: #db2777;
-            --btn-gift-bg: #a7f3d0; /* สีเขียวมิ้นต์ */
+            --btn-gift-bg: #a7f3d0; 
             --btn-gift-hover: #6ee7b7;
             --btn-gift-text: #166534;
+            --warning-bg: #fee2e2;
+            --warning-text: #991b1b;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Mali', cursive;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Mali', cursive; }
 
         body {
             background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
@@ -35,477 +37,268 @@
             position: relative;
         }
 
-        /* --- ซากุระร่วง --- */
-        #sakura-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .sakura {
-            position: absolute;
-            background-color: #ffb7c5;
-            border-radius: 100% 0% 100% 0%;
-            opacity: 0.6;
-            animation: fall linear infinite;
-        }
-        @keyframes fall {
-            0% { transform: translateY(-10vh) translateX(0) rotate(0deg) scale(0.5); opacity: 0; }
-            10% { opacity: 0.8; }
-            100% { transform: translateY(110vh) translateX(20px) rotate(360deg) scale(1); opacity: 0; }
-        }
-
-        /* --- กล่องคอนเทนเนอร์หลักคลุมทั้งโลโก้และการ์ด --- */
-        .main-wrapper {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: floatUp 0.8s ease-out;
-            padding: 20px 0;
-        }
-
-        @keyframes floatUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-  /* 🌟 โลโก้ตรงกลางด้านนอก 🌟 */
-        .center-logo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 90%;
-            max-width: 320px;
-            margin: 0 auto 120px; /* เว้นที่ด้านล่างให้หัวน้องมิโกะเกาะขอบหน้าต่างได้พอดี */
-            transition: transform 0.3s;
-            text-decoration: none;
-        }
-        .center-logo:hover {
-            transform: scale(1.03) rotate(-2deg);
-        }
-        .center-logo img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        /* สไตล์สำหรับชื่อช่อง YouTube ใต้โลโก้ */
-        .channel-name {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 15px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #db2777;
-            background-color: white;
-            padding: 8px 25px;
-            border-radius: 50px;
-            border: 3px solid #fbcfe8;
-            box-shadow: 0 6px 15px rgba(244, 114, 182, 0.2);
-            transition: all 0.3s;
-        }
-        .center-logo:hover .channel-name {
-            background-color: #fdf2f8;
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(244, 114, 182, 0.4);
-        }
-
-
-        /* --- กล่องเนื้อหาหลัก --- */
-        .welcome-card {
-            position: relative;
-            background: white;
-            padding: 40px 30px;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(244, 114, 182, 0.2);
-            width: 90%;
-            max-width: 450px;
-            text-align: center;
-            border: 4px solid var(--window-bar);
-        }
-
-        /* 🌟 รูปน้องมิโกะเกาะขอบบน 🌟 */
-        .top-character {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 160px;
-            margin-bottom: -23px;
-            z-index: 12;
-            pointer-events: none;
-        }
-
-        /* รูปหน้าปก (เค้กวันเกิด) */
-        .cover-image {
-            width: 100%;
-            max-width: 250px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-        }
-        .cover-image:hover {
-            transform: scale(1.02) rotate(-2deg);
-        }
-
-        h1 {
-            color: var(--btn-hover);
-            font-size: 1.6rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        p {
-            color: var(--text-dark);
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        /* กลุ่มปุ่มกด */
-        .button-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        /* ปุ่มกดไปหน้าฟอร์มอวยพร */
-        .start-btn {
-            display: block;
-            background-color: var(--btn-bg);
-            color: white;
-            text-decoration: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border-radius: 50px;
-            box-shadow: 0 6px 15px rgba(244, 114, 182, 0.4);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            border: none;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .start-btn:hover {
-            background-color: var(--btn-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(219, 39, 119, 0.5);
-        }
-
-        .start-btn:active {
-            transform: translateY(1px);
-        }
-
-        .start-btn::after {
-            content: "✨";
-            position: absolute;
-            right: 15px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .start-btn:hover::after { opacity: 1; }
-
-        /* ปุ่มกดไปหน้าส่งของขวัญ */
-        .gift-btn {
-            display: block;
-            background-color: var(--btn-gift-bg);
-            color: var(--btn-gift-text);
-            text-decoration: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border-radius: 50px;
-            box-shadow: 0 6px 15px rgba(167, 243, 208, 0.5);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            border: none;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .gift-btn:hover {
-            background-color: var(--btn-gift-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(110, 231, 183, 0.6);
-            color: #064e3b;
-        }
-
-        .gift-btn:active { transform: translateY(1px); }
-
-        .gift-btn::after {
-            content: "🎀";
-            position: absolute;
-            right: 15px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .gift-btn:hover::after { opacity: 1; }
-
-        /* --- สไตล์ Pop-up กฎการส่งของขวัญ --- */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-box {
-            background: white;
-            padding: 25px 20px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 450px;
-            position: relative;
-            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            border: 4px solid var(--btn-gift-bg);
-        }
-
-        .modal-scroll-content {
-            max-height: 70vh;
-            overflow-y: auto;
-            overflow-x: hidden;
-            padding: 5px 15px;
-            text-align: left;
-        }
-        
-        .modal-scroll-content::-webkit-scrollbar { width: 6px; }
-        .modal-scroll-content::-webkit-scrollbar-thumb { background-color: #fbcfe8; border-radius: 10px; }
-
-        @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-
-        .close-btn {
-            position: absolute;
-            top: 10px; right: 20px;
-            font-size: 1.8rem;
-            color: #999;
-            cursor: pointer;
-            line-height: 1;
-            z-index: 20;
-        }
-
-        .rules-text-box {
-            background: #fff5f8;
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        .rules-text-box ul {
-            padding-left: 20px;
-            margin-bottom: 10px;
-        }
-
         body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: radial-gradient(rgba(255, 255, 255, 0.45) 2px, transparent 2px);
-            background-size: 30px 30px;
-            z-index: 0;
-            pointer-events: none;
+            background-size: 30px 30px; z-index: 0; pointer-events: none;
         }
 
-        .side-deco {
-            display: none;
-            position: fixed;
-            border-radius: 20px;
-            border: 6px solid white;
-            box-shadow: 0 15px 35px rgba(244, 114, 182, 0.2);
-            z-index: 5;
-            pointer-events: none;
-        }
-        @media (min-width: 1024px) {
-            .side-deco {
-                display: block;
-                width: 20vw;
-                max-width: 280px;
-            }
-            .left-deco {
-                top: 50%; left: 5%;
-                animation: floatLeft 6s ease-in-out infinite;
-            }
-            .right-deco {
-                top: 50%; right: 5%;
-                animation: floatRight 7s ease-in-out infinite;
-            }
-        }
-        @keyframes floatLeft {
-            0%, 100% { transform: translateY(-50%) rotate(-6deg); }
-            50% { transform: translateY(-55%) rotate(-2deg); }
-        }
-        @keyframes floatRight {
-            0%, 100% { transform: translateY(-50%) rotate(6deg); }
-            50% { transform: translateY(-45%) rotate(2deg); }
-        }
+        #sakura-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 1; }
+        .sakura { position: absolute; background-color: #ffb7c5; border-radius: 100% 0% 100% 0%; opacity: 0.6; animation: fall linear infinite; }
+        @keyframes fall { 0% { transform: translateY(-10vh) translateX(0) rotate(0deg) scale(0.5); opacity: 0; } 10% { opacity: 0.8; } 100% { transform: translateY(110vh) translateX(20px) rotate(360deg) scale(1); opacity: 0; } }
+
+        .side-deco { display: none; position: fixed; border-radius: 20px; border: 6px solid white; box-shadow: 0 15px 35px rgba(244, 114, 182, 0.2); z-index: 5; pointer-events: none; }
+        @media (min-width: 1024px) { .side-deco { display: block; width: 18vw; max-width: 220px; } .left-deco { top: 50%; left: 5%; animation: floatLeft 6s ease-in-out infinite; } .right-deco { top: 50%; right: 5%; animation: floatRight 7s ease-in-out infinite; } }
+        @keyframes floatLeft { 0%, 100% { transform: translateY(-50%) rotate(-6deg); } 50% { transform: translateY(-55%) rotate(-2deg); } }
+        @keyframes floatRight { 0%, 100% { transform: translateY(-50%) rotate(6deg); } 50% { transform: translateY(-45%) rotate(2deg); } }
+
+        .main-wrapper { position: relative; z-index: 10; width: 100%; display: flex; flex-direction: column; align-items: center; padding: 30px 0; }
+        
+        .center-logo { display: flex; flex-direction: column; align-items: center; width: 90%; max-width: 300px; margin: 0 auto 120px; transition: transform 0.3s; text-decoration: none; cursor: pointer; }
+        .center-logo:hover { transform: scale(1.03) rotate(-2deg); }
+        .center-logo img { width: 100%; height: auto; display: block; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        
+        .channel-name { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; font-size: 1.2rem; font-weight: 700; color: #db2777; background-color: white; padding: 8px 25px; border-radius: 50px; border: 3px solid #fbcfe8; box-shadow: 0 6px 15px rgba(244, 114, 182, 0.2); }
+
+        /* การจัดการหน้า (Sections) */
+        .section-container { display: none; width: 100%; flex-direction: column; align-items: center; animation: fadeIn 0.5s ease-in-out; }
+        .section-active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+        .wrapper { position: relative; width: 90%; max-width: 450px; margin-bottom: 40px; }
+        .top-character { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); width: 150px; margin-bottom: -22px; z-index: 12; pointer-events: none; }
+        
+        .window-box { background-color: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; border: 3px solid var(--window-bar); }
+        .window-header { background-color: var(--window-bar); height: 30px; display: flex; align-items: center; padding: 0 15px; gap: 6px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.red { background-color: #ff5f56; }
+        .dot.yellow { background-color: #ffbd2e; }
+        .dot.green { background-color: #27c93f; }
+
+        .content-box { padding: 30px 25px; text-align: center; }
+        .cover-image { width: 100%; max-width: 250px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+        
+        h1 { color: #db2777; font-size: 1.6rem; margin-bottom: 10px; font-weight: 700; }
+        p.subtitle { color: var(--text-dark); font-size: 1.05rem; margin-bottom: 25px; line-height: 1.6; }
+
+        .action-btn { display: block; padding: 15px 30px; font-size: 1.2rem; font-weight: 600; border-radius: 50px; border: none; cursor: pointer; transition: all 0.3s; width: 100%; margin-bottom: 15px; position: relative; }
+        .btn-pink { background-color: var(--btn-bg); color: white; box-shadow: 0 6px 15px rgba(244, 114, 182, 0.4); }
+        .btn-green { background-color: var(--btn-gift-bg); color: var(--btn-gift-text); box-shadow: 0 6px 15px rgba(167, 243, 208, 0.5); }
+        .action-btn:hover { transform: translateY(-3px); opacity: 0.9; }
+
+        /* สไตล์ฟอร์ม */
+        .form-group { margin-bottom: 15px; text-align: left; }
+        label { display: block; margin-bottom: 5px; font-size: 0.9rem; font-weight: 700; color: var(--text-dark); }
+        input[type="text"], textarea, input[type="file"] { width: 100%; padding: 12px; border: 2px solid var(--input-border); border-radius: 10px; background: var(--input-bg); font-size: 1rem; }
+        textarea { height: 100px; resize: vertical; }
+
+        /* Login Overlay */
+        #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+        
+        /* Modal */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 200; justify-content: center; align-items: center; }
+        .modal-box { background: white; padding: 25px; border-radius: 20px; width: 90%; max-width: 400px; text-align: center; position: relative; }
+        .close-btn { position: absolute; top: 10px; right: 20px; font-size: 2rem; color: #999; cursor: pointer; }
     </style>
 </head>
 <body>
-    <img src="อร่อย.png" alt="Deco" class="side-deco left-deco" onerror="this.style.display='none'">
-    <img src="อารมณ์ดี.png" alt="Deco" class="side-deco right-deco" onerror="this.style.display='none'">
 
-    <!-- ซากุระร่วง -->
+    <!-- 🌟 ส่วนล็อกอิน (แสดงเป็นอย่างแรก) 🌟 -->
+    <div id="loginOverlay">
+        <img src="logo_01.png" style="width: 150px; border-radius: 20px; margin-bottom: 20px;" onerror="this.style.display='none'">
+        <h2 style="color: #db2777; margin-bottom: 10px;">ศาลเจ้า Kisane Miko</h2>
+        <p style="margin-bottom: 30px; color: #666;">กรุณาเข้าสู่ระบบด้วย Gmail เพื่อดำเนินการต่อค่ะ 🐈</p>
+        <div id="googleBtn"></div>
+    </div>
+
     <div id="sakura-container"></div>
-    <script>
-        const sakuraContainer = document.getElementById('sakura-container');
-        for(let i=0; i<20; i++) {
-            let sakura = document.createElement('div');
-            sakura.className = 'sakura';
-            sakura.style.left = Math.random() * 100 + 'vw';
-            sakura.style.width = (Math.random() * 10 + 10) + 'px';
-            sakura.style.height = (Math.random() * 10 + 10) + 'px';
-            sakura.style.animationDuration = (Math.random() * 5 + 5) + 's';
-            sakura.style.animationDelay = (Math.random() * 5) + 's';
-            sakuraContainer.appendChild(sakura);
-        }
-    </script>
+    <img src="donate_miko_03.png" alt="Deco" class="side-deco left-deco" onerror="this.style.display='none'">
+    <img src="โกรธ.png" alt="Deco" class="side-deco right-deco" onerror="this.style.display='none'">
 
-    <!-- 🌟 คอนเทนเนอร์หลัก 🌟 -->
-    <div class="main-wrapper">
+    <div class="main-wrapper" id="mainContent" style="display: none;">
         
-     <!-- โลโก้ศาลเจ้า (เพิ่มคำสั่ง onclick เรียกใช้ฟังก์ชันเปิดแอป) -->
-        <a href="https://www.youtube.com/@KisaneMikoCh" target="_blank" class="center-logo" onclick="openYouTubeApp(event)">
-            <img src="logo_01.png" alt="Kisane Miko YouTube" onerror="this.style.display='none'">
-            <!-- ป้ายชื่อ Kisane Miko และไอคอน YouTube -->
+        <a href="#" class="center-logo" onclick="openYouTubeApp(event)">
+            <img src="logo_01.png" alt="Kisane Miko" onerror="this.style.display='none'">
             <div class="channel-name">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FF0000"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FF0000"/></svg>
                 <span>Kisane Miko</span>
-             </div>
+            </div>
         </a>
-        <!-- การ์ดต้อนรับ -->
-        <div class="welcome-card">
-            
-            <!-- 🌟 เพิ่มรูปน้องมิโกะเกาะขอบบนกลับมา 🌟 -->
-            <img src="รูปมิโกะพื้นหลังใส.png" alt="Miko" class="top-character" onerror="this.style.display='none'">
-            
-            <!-- ใช้รูป HappyBirthday.png เป็นรูปหลัก -->
-            <img src="HappyBirthday.png" alt="มิโกะกับเค้กวันเกิด" class="cover-image" onerror="this.style.display='none'">
-            
-            <h1>สุขสันต์วันเกิดให้มิโกะ 🐈💚</h1>
-            <p>มาร่วมเขียนคำอวยพรน่ารักๆ <br>และส่งรอยยิ้มให้เจ้าแมวเขียวตัวนี้กันเถอะน้า~</p>
-            
-            <div class="button-group">
-                <!-- ลิงก์ไปยังหน้าฟอร์มอวยพร -->
-                <a href="miko-form.html" class="start-btn">เริ่มเขียนคำอวยพร 💌</a>
-                
-                <!-- ลิงก์ไปหน้าส่งของขวัญ -->
-                <a href="gift.html" class="gift-btn">ส่งของขวัญให้มิโกะ 🎁</a>
+
+        <!-- Section: Home -->
+        <div id="homeSec" class="section-container section-active">
+            <div class="wrapper">
+                <img src="รูปมิโกะพื้นหลังใส.png" class="top-character" onerror="this.style.display='none'">
+                <div class="window-box">
+                    <div class="window-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="content-box">
+                        <img src="HappyBirthday.png" class="cover-image" onerror="this.style.display='none'">
+                        <h1>สุขสันต์วันเกิดให้มิโกะ 🐈💚</h1>
+                        <p class="subtitle">ล็อกอินแล้วโดย: <span id="userDisp" style="font-weight: 700; color: #db2777;"></span></p>
+                        <button class="action-btn btn-pink" onclick="navigate('wishSec')">เริ่มเขียนคำอวยพร 💌</button>
+                        <button class="action-btn btn-green" onclick="navigate('giftSec')">ส่งของขวัญให้มิโกะ 🎁</button>
+                    </div>
+                </div>
             </div>
         </div>
-        
+
+        <!-- Section: Wish -->
+        <div id="wishSec" class="section-container">
+            <div class="wrapper">
+                <img src="รูปมิโกะพื้นหลังใส.png" class="top-character" onerror="this.style.display='none'">
+                <div class="window-box">
+                    <div class="window-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="content-box">
+                        <h1>คำอวยพรให้มิโกะ 💌</h1>
+                        <form id="wishForm">
+                            <div class="form-group"><label>ชื่อใน Youtube</label><input type="text" id="wishYT" required></div>
+                            <div class="form-group"><label>คำอวยพร</label><textarea id="wishMsg" required></textarea></div>
+                            <button type="submit" class="action-btn btn-pink" id="wishBtn">ส่งคำอวยพรเลย!</button>
+                        </form>
+                        <a href="#" onclick="navigate('homeSec')" style="color: #999; font-size: 0.8rem;">⬅️ กลับหน้าหลัก</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Gift -->
+        <div id="giftSec" class="section-container">
+            <div class="wrapper">
+                <img src="รูปมิโกะพื้นหลังใส.png" class="top-character" onerror="this.style.display='none'">
+                <div class="window-box">
+                    <div class="window-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="content-box">
+                        <h1>ส่งของขวัญให้มิโกะ 🎁</h1>
+                        <form id="giftForm">
+                            <div class="form-group"><label>ชื่อใน Youtube</label><input type="text" id="giftYT" required></div>
+                            <div class="form-group"><label>ชื่อผู้ส่ง (จ่าหน้ากล่อง)</label><input type="text" id="sender" required></div>
+                            <div class="form-group"><label>รายละเอียดของขวัญ</label><textarea id="detail" required></textarea></div>
+                            <div class="form-group"><label>รูปของขวัญ (เลือกได้หลายรูป)</label><input type="file" id="pics" multiple required></div>
+                            <div class="form-group"><label>รูปหลักฐานการส่ง (เลือกได้หลายรูป)</label><input type="file" id="proofs" multiple required></div>
+                            <button type="submit" class="action-btn btn-green" id="giftBtn">แจ้งส่งของขวัญ!</button>
+                        </form>
+                        <a href="#" onclick="navigate('homeSec')" style="color: #999; font-size: 0.8rem;">⬅️ กลับหน้าหลัก</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- 🌟 Pop-up กฎการส่งของขวัญ (ตั้งค่าให้แสดงทันทีที่โหลดหน้าเว็บ) 🌟 -->
-    <div class="modal-overlay" id="giftRulesModal" style="display: flex;">
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
         <div class="modal-box">
-            <span class="close-btn" id="closeGiftModal">&times;</span>
-            
-            <h2 style="color: #064e3b; font-size: 1.4rem; margin-bottom: 15px; margin-top: 10px;">ข้อตกลงและกฎ 🎁</h2>
-            
-            <div class="modal-scroll-content">
-                <div class="rules-text-box">
-                    <p><strong>❌ ข้อห้ามในการส่งเป็นของขวัญ:</strong></p>
-                    <ul>
-                        <li>อาหาร / น้ำ / ขนม</li>
-                        <li>ภาพ AI</li>
-                        <li>ดัดแปลงภาพหรือสื่อของผู้อื่น</li>
-                        <li>สิ่งลามกอนาจาร (ทีมงานไม่อนุญาตให้นำมาแสดงในไลฟ์)</li>
-                    </ul>
-
-                    <p><strong>📦 การจัดส่ง:</strong></p>
-                    <ul>
-                        <li>กรุณาจัดส่งไปยังสถานที่ที่กำหนดไว้ใน Discord เท่านั้น</li>
-                        <li>ทีมงานจะไม่มีการนัดรับหรือส่งให้กับมือใดๆ ทั้งสิ้น</li>
-                        <li>แบบฟอร์มอวยพรจะแยกกับส่งของขวัญ เพื่อความเซอร์ไพรส์ตอนเปิดกล่องนะคะ</li>
-                    </ul>
-
-                    <p style="text-align: center; color: #991b1b; background: #fee2e2; padding: 10px; border-radius: 8px; margin-top: 15px; font-weight: 600;">
-                        เปิดรับถึงวันที่ 15 เมษายน 2569 📆<br>
-                        <span style="font-size: 0.85rem; font-weight: 400; color: #4b5563;">หากมีข้อสงสัยติดต่อ Discord: <a href="https://discord.gg/srWZ2hxk" target="_blank" style="color: #db2777; text-decoration: underline; font-weight: 700; font-size: 1.15rem; display: inline-block; margin-top: 5px;">ศาลเจ้า Kisane Miko</a></span>
-                    </p>
-                </div>
-
-                <!-- แทรกรูปโปสเตอร์ไว้ด้านล่างให้อ่านแบบ Original ได้ -->
-                <img src="Light Grayish Orange Happy Birthday Poster.jpg" alt="กฎการส่งของขวัญ" style="width: 100%; border-radius: 10px; margin-bottom: 15px;" onerror="this.style.display='none'">
-
-                <!-- ปุ่มกดยอมรับเพื่อปิดหน้าต่างแล้วใช้งานเว็บต่อ -->
-                <button class="gift-btn" id="acceptGiftRulesBtn" style="width: 100%; padding: 12px; font-size: 1.1rem; color: #166534;">รับทราบและตกลง 🌸</button>
-            </div>
+            <span class="close-btn" onclick="this.parentElement.parentElement.style.display='none'">&times;</span>
+            <h2 style="color: #27c93f; margin-bottom: 15px;">ส่งข้อมูลสำเร็จแล้ว! ✨</h2>
+            <img src="ของขวัญ.png" style="width: 200px; border-radius: 15px;" onerror="this.style.display='none'">
+            <p style="margin-top: 15px;">ขอบคุณที่ร่วมเป็นส่วนหนึ่งในวันเกิดมิโกะนะคะ 🐈💚</p>
         </div>
     </div>
 
     <script>
-        // ควบคุมการทำงานของ Pop-up กฎ
-        const giftModal = document.getElementById('giftRulesModal');
-        const closeGiftModal = document.getElementById('closeGiftModal');
-        const acceptGiftBtn = document.getElementById('acceptGiftRulesBtn');
+        // ⚙️ ตั้งค่าข้อมูลของคุณตรงนี้ ⚙️
+        const GOOGLE_CLIENT_ID = "506840275210-d97qjm02ls2g6mlksi327a7le53tidvo.apps.googleusercontent.com";
+        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxNA2-sUavxI7c5aNBzzXYMEI2WGR5UOOIjh4WfBjuaGfGe6-IBDdXNbspn6QGvteDP/exec";
 
-        // ปิด Modal (กากบาท)
-        closeGiftModal.addEventListener('click', () => {
-            giftModal.style.display = 'none';
+        let userEmail = "";
+
+        // ระบบ Login
+        window.onload = function () {
+            google.accounts.id.initialize({
+                client_id: GOOGLE_CLIENT_ID,
+                callback: handleCredentialResponse
+            });
+            google.accounts.id.renderButton(
+                document.getElementById("googleBtn"),
+                { theme: "outline", size: "large", text: "signin_with", shape: "pill" }
+            );
+        };
+
+        function handleCredentialResponse(response) {
+            const payload = JSON.parse(atob(response.credential.split('.')[1]));
+            userEmail = payload.email;
+            document.getElementById('userDisp').innerText = userEmail;
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'flex';
+            initSakura();
+        }
+
+        function navigate(id) {
+            document.querySelectorAll('.section-container').forEach(s => s.classList.remove('section-active'));
+            document.getElementById(id).classList.add('section-active');
+        }
+
+        // ฟังก์ชันแปลงไฟล์
+        const getBase64 = (file) => new Promise((res, rej) => {
+            const reader = new FileReader(); reader.readAsDataURL(file);
+            reader.onload = () => res({ filename: file.name, mimeType: file.type, data: reader.result.split(',')[1] });
+            reader.onerror = e => rej(e);
         });
 
-        // ปิด Modal เมื่อคลิกพื้นที่ว่าง
-        giftModal.addEventListener('click', (e) => {
-            if (e.target === giftModal) {
-                giftModal.style.display = 'none';
+        // ส่งฟอร์ม Wish
+        document.getElementById('wishForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('wishBtn');
+            btn.disabled = true; btn.innerText = "กำลังส่ง... 🐾";
+            
+            const data = {
+                type: 'wish',
+                email: userEmail,
+                youtubeName: document.getElementById('wishYT').value,
+                wishContent: document.getElementById('wishMsg').value
+            };
+
+            await fetch(GAS_WEB_APP_URL, { method: 'POST', body: JSON.stringify(data) });
+            showSuccess();
+            btn.disabled = false; btn.innerText = "ส่งคำอวยพรเลย!";
+        };
+
+        // ส่งฟอร์ม Gift
+        document.getElementById('giftForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('giftBtn');
+            btn.disabled = true; btn.innerText = "กำลังอัปโหลด... 📦";
+
+            const data = {
+                type: 'gift',
+                email: userEmail,
+                youtubeName: document.getElementById('giftYT').value,
+                senderName: document.getElementById('sender').value,
+                giftDetail: document.getElementById('detail').value,
+                giftPics: await Promise.all([...document.getElementById('pics').files].map(getBase64)),
+                proofPics: await Promise.all([...document.getElementById('proofs').files].map(getBase64))
+            };
+
+            await fetch(GAS_WEB_APP_URL, { method: 'POST', body: JSON.stringify(data) });
+            showSuccess();
+            btn.disabled = false; btn.innerText = "แจ้งส่งของขวัญ!";
+        };
+
+        function showSuccess() {
+            document.getElementById('successModal').style.display = 'flex';
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        }
+
+        function initSakura() {
+            const container = document.getElementById('sakura-container');
+            for(let i=0; i<15; i++) {
+                let s = document.createElement('div'); s.className = 'sakura';
+                s.style.left = Math.random() * 100 + 'vw';
+                s.style.width = s.style.height = (Math.random() * 10 + 10) + 'px';
+                s.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                container.appendChild(s);
             }
-        });
+        }
 
-        // กดยอมรับเพื่อปิด Pop-up และใช้งานหน้าเว็บหลักต่อ
-        acceptGiftBtn.addEventListener('click', () => {
-            giftModal.style.display = 'none';
-        });
-    </script>
-  <script>
-        // 🌟 สคริปต์เปิดแอป YouTube บนมือถือ 🌟
         function openYouTubeApp(event) {
-            event.preventDefault(); // ปิดการทำงานลิงก์ดั้งเดิมชั่วคราว
-            var webUrl = 'https://www.youtube.com/@KisaneMikoCh';
-            var androidIntent = 'intent://www.youtube.com/@KisaneMikoCh#Intent;package=com.google.android.youtube;scheme=https;end';
-            var iosUrl = 'youtube://www.youtube.com/@KisaneMikoCh';
-            
-            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            
-            // ถ้าเป็น Android ให้ใช้ Intent URL เปิดแอปทันที
-            if (/android/i.test(userAgent)) {
-                window.location.href = androidIntent;
-            } 
-            // ถ้าเป็น iOS ให้ลองเรียกโปรโตคอล youtube:// ก่อน 
-            else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                window.location.href = iosUrl;
-                // ตั้งเวลา 0.5 วินาที ถ้ามือถือไม่มีแอป จะเด้งไปหน้าเว็บแทน
-                setTimeout(function() {
-                    window.location.href = webUrl;
-                }, 500);
-            } 
-            // ถ้าเป็นคอมพิวเตอร์ Desktop ให้เปิดหน้าเว็บปกติในแท็บใหม่
-            else {
-                window.open(webUrl, '_blank');
-            }
+            event.preventDefault();
+            const url = 'https://www.youtube.com/@KisaneMikoCh';
+            if (/android/i.test(navigator.userAgent)) {
+                window.location.href = `intent://${url.replace('https://','')}/#Intent;package=com.google.android.youtube;scheme=https;end`;
+            } else if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+                window.location.href = url.replace('https://','youtube://');
+                setTimeout(() => window.location.href = url, 500);
+            } else { window.open(url, '_blank'); }
         }
     </script>
 </body>
 </html>
-
