@@ -108,13 +108,68 @@
             50% { transform: translateY(-45%) rotate(2deg); }
         }
 
+        /* 🌟 เพิ่มสไตล์สำหรับคลุมโลโก้และการ์ด 🌟 */
+        .main-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 0;
+        }
+
+        /* 🌟 โลโก้ตรงกลางด้านนอก 🌟 */
+        .center-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 320px;
+            margin: 0 auto 120px; /* ปรับลดลงนิดหน่อยเผื่อที่ให้ชื่อด้านล่าง */
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+        .center-logo:hover {
+            transform: scale(1.03) rotate(-2deg);
+        }
+        .center-logo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        /* สไตล์สำหรับชื่อช่อง YouTube ใต้โลโก้ */
+        .channel-name {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #db2777;
+            background-color: white;
+            padding: 8px 25px;
+            border-radius: 50px;
+            border: 3px solid #fbcfe8;
+            box-shadow: 0 6px 15px rgba(244, 114, 182, 0.2);
+            transition: all 0.3s;
+        }
+        .center-logo:hover .channel-name {
+            background-color: #fdf2f8;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(244, 114, 182, 0.4);
+        }
+
         /* --- คอนเทนเนอร์หลัก --- */
         .wrapper {
             position: relative;
             z-index: 10;
             width: 90%;
             max-width: 450px;
-            margin-top: 100px;
             margin-bottom: 40px;
         }
 
@@ -329,7 +384,7 @@
     <!-- ลายซากุระ -->
     <div id="sakura-container"></div>
 
-    <!-- 🌟 3. เพิ่มรูปตกแต่งลอยซ้าย-ขวา สำหรับ Desktop 🌟 -->
+    <!-- 🌟 เพิ่มรูปตกแต่งลอยซ้าย-ขวา สำหรับ Desktop 🌟 -->
     <img src="donate_miko_02.png" alt="Deco" class="side-deco left-deco" onerror="this.style.display='none'">
     <img src="นอน.png" alt="Deco" class="side-deco right-deco" onerror="this.style.display='none'">
 
@@ -364,7 +419,8 @@
                     </ul>
 
                     <div class="warning-text">
-                        ⚠️ หากมีการเก็บเงินปลายทาง ทางเราขออนุญาตไม่รับของและส่งของคืนให้ผู้ส่งนะคะ
+                        ⚠️ หากมีการเก็บเงินปลายทาง ทางเราขออนุญาตไม่รับของและส่งของคืนให้ผู้ส่งนะคะ<br>
+                        <span style="font-size: 0.85rem; font-weight: 400; color: #4b5563; display: inline-block; margin-top: 10px;">หากมีข้อสงสัยติดต่อ Discord: <a href="https://discord.gg/srWZ2hxk" target="_blank" style="color: #db2777; text-decoration: underline; font-weight: 700; font-size: 1.15rem; display: inline-block; margin-top: 5px;">ศาลเจ้า Kisane Miko</a></span>
                     </div>
                 </div>
 
@@ -373,51 +429,67 @@
         </div>
     </div>
 
-    <div class="wrapper">
-        <img src="รูปมิโกะพื้นหลังใส.png" alt="Miko" class="top-character" onerror="this.style.display='none'">
-
-        <div class="window-box" id="formContainer">
-            <div class="window-header">
-                <div class="dot red"></div>
-                <div class="dot yellow"></div>
-                <div class="dot green"></div>
+    <!-- 🌟 คลุมทั้งหมดด้วย main-wrapper และแทรกโลโก้ 🌟 -->
+    <div class="main-wrapper">
+        
+        <!-- โลโก้ศาลเจ้า (เพิ่มคำสั่ง onclick เรียกใช้ฟังก์ชันเปิดแอป) -->
+        <a href="https://www.youtube.com/@KisaneMikoCh" target="_blank" class="center-logo" onclick="openYouTubeApp(event)">
+            <img src="logo_01.png" alt="Kisane Miko YouTube" onerror="this.style.display='none'">
+            <!-- เพิ่มป้ายชื่อ Kisane Miko และไอคอน YouTube -->
+            <div class="channel-name">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FF0000"/>
+                </svg>
+                <span>Kisane Miko</span>
             </div>
+        </a>
 
-            <div class="form-content">
-                <h1>ส่งของขวัญให้แมวเขียว 🎁</h1>
-                <p style="text-align: center; color: #888; font-size: 0.95rem; margin-top: -15px; margin-bottom: 20px;">กรอกรายละเอียดของขวัญที่จะส่งให้มิโกะได้เลย~ 🐈</p>
-                
-                <form id="giftForm">
-                    <div class="form-group">
-                        <label>1. ชื่อใน Youtube</label>
-                        <input type="text" id="youtubeName" placeholder="ชื่อช่อง Youtube ของคุณ..." required>
-                    </div>
+        <div class="wrapper">
+            <img src="รูปมิโกะพื้นหลังใส.png" alt="Miko" class="top-character" onerror="this.style.display='none'">
 
-                    <div class="form-group">
-                        <label>2. ชื่อผู้ส่ง (ชื่อที่ใช้ส่งพัสดุ)</label>
-                        <input type="text" id="senderName" placeholder="ชื่อจ่าหน้ากล่องพัสดุ..." required>
-                    </div>
+            <div class="window-box" id="formContainer">
+                <div class="window-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
 
-                    <div class="form-group">
-                        <label>3. รายละเอียดของของขวัญที่ส่งมา</label>
-                        <textarea id="giftDetail" placeholder="อธิบายหน่อยว่าคืออะไรน้า~ (เช่น ตุ๊กตาแมว,กระเป๋า)..." required></textarea>
-                    </div>
+                <div class="form-content">
+                    <h1>ส่งของขวัญให้แมวเขียว 🎁</h1>
+                    <p style="text-align: center; color: #888; font-size: 0.95rem; margin-top: -15px; margin-bottom: 20px;">กรอกรายละเอียดของขวัญที่จะส่งให้มิโกะได้เลยเมี้ยว~ 🐈</p>
+                    
+                    <form id="giftForm">
+                        <div class="form-group">
+                            <label>1. ชื่อใน Youtube</label>
+                            <input type="text" id="youtubeName" placeholder="ชื่อช่อง Youtube ของคุณ..." required>
+                        </div>
 
-                    <div class="form-group">
-                        <label>4. รูปภาพของขวัญที่ต้องการส่ง</label>
-                        <input type="file" id="giftPic" accept="image/*" required>
-                    </div>
+                        <div class="form-group">
+                            <label>2. ชื่อผู้ส่ง (ชื่อที่ใช้ส่งพัสดุ)</label>
+                            <input type="text" id="senderName" placeholder="ชื่อจ่าหน้ากล่องพัสดุ..." required>
+                        </div>
 
-                    <div class="form-group">
-                        <label>5. รูปภาพหลักฐานการส่ง (เช่น สลิปพัสดุ)</label>
-                        <input type="file" id="proofPic" accept="image/*" required>
-                    </div>
+                        <div class="form-group">
+                            <label>3. รายละเอียดของของขวัญที่ส่งมา</label>
+                            <textarea id="giftDetail" placeholder="อธิบายหน่อยว่าคืออะไรน้า~ (เช่น ตุ๊กตาแมว,กระเป๋า)..." required></textarea>
+                        </div>
 
-                    <button type="submit" class="submit-btn" id="submitBtn">แจ้งส่งของขวัญเลย! 🎀</button>
-                </form>
+                        <div class="form-group">
+                            <label>4. รูปภาพของขวัญที่ต้องการส่ง</label>
+                            <input type="file" id="giftPic" accept="image/*" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>5. รูปภาพหลักฐานการส่ง (เช่น สลิปพัสดุ)</label>
+                            <input type="file" id="proofPic" accept="image/*" required>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submitBtn">แจ้งส่งของขวัญเลย! 🎀</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    </div> <!-- 🌟 ปิด div ของ main-wrapper 🌟 -->
 
     <!-- Pop-up Modal เมื่อส่งสำเร็จ -->
     <div class="modal-overlay" id="successModal">
@@ -432,6 +504,33 @@
     </div>
 
     <script>
+        // 🌟 สคริปต์เปิดแอป YouTube บนมือถือ 🌟
+        function openYouTubeApp(event) {
+            event.preventDefault(); // ปิดการทำงานลิงก์ดั้งเดิมชั่วคราว
+            var webUrl = 'https://www.youtube.com/@KisaneMikoCh';
+            var androidIntent = 'intent://www.youtube.com/@KisaneMikoCh#Intent;package=com.google.android.youtube;scheme=https;end';
+            var iosUrl = 'youtube://www.youtube.com/@KisaneMikoCh';
+            
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            // ถ้าเป็น Android ให้ใช้ Intent URL เปิดแอปทันที
+            if (/android/i.test(userAgent)) {
+                window.location.href = androidIntent;
+            } 
+            // ถ้าเป็น iOS ให้ลองเรียกโปรโตคอล youtube:// ก่อน 
+            else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                window.location.href = iosUrl;
+                // ตั้งเวลา 0.5 วินาที ถ้ามือถือไม่มีแอป จะเด้งไปหน้าเว็บแทน
+                setTimeout(function() {
+                    window.location.href = webUrl;
+                }, 500);
+            } 
+            // ถ้าเป็นคอมพิวเตอร์ Desktop ให้เปิดหน้าเว็บปกติในแท็บใหม่
+            else {
+                window.open(webUrl, '_blank');
+            }
+        }
+
         // สร้างซากุระ
         const sakuraContainer = document.getElementById('sakura-container');
         for(let i=0; i<15; i++) {
@@ -554,7 +653,3 @@
     </script>
 </body>
 </html>
-
-
-
-
