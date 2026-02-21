@@ -409,7 +409,7 @@
                     <p><strong>❌ ข้อห้ามในการส่ง:</strong></p>
                     <ul>
                         <li>อาหาร</li>
-                        <li>ขนมที่เสียง่าย ขนมปัง/เค้ก </li>
+                        <li>ขนมที่เสียง่าย เช่น ขนมปัง/เค้ก </li>
                         <li>น้ำที่เสียงาย เช่น นม</li>
                         <li>สิ่งผิดกฏหมาย</li>
                         <li>สิ่งลามกอนาจาร</li>
@@ -480,13 +480,15 @@
                         </div>
 
                         <div class="form-group">
-                            <label>4. รูปภาพของขวัญที่ต้องการส่ง</label>
-                            <input type="file" id="giftPic" accept="image/*" required>
+                            <label>4. รูปภาพของขวัญที่ต้องการส่ง (เลือกได้หลายรูป)</label>
+                            <!-- 🌟 เพิ่ม multiple ให้รับได้หลายไฟล์ 🌟 -->
+                            <input type="file" id="giftPic" accept="image/*" multiple required>
                         </div>
 
                         <div class="form-group">
-                            <label>5. รูปภาพหลักฐานการส่ง (เช่น สลิปพัสดุ)</label>
-                            <input type="file" id="proofPic" accept="image/*" required>
+                            <label>5. รูปภาพหลักฐานการส่ง (เช่น สลิปพัสดุ - เลือกได้หลายรูป)</label>
+                            <!-- 🌟 เพิ่ม multiple ให้รับได้หลายไฟล์ 🌟 -->
+                            <input type="file" id="proofPic" accept="image/*" multiple required>
                         </div>
 
                         <button type="submit" class="submit-btn" id="submitBtn">แจ้งส่งของขวัญเลย! 🎀</button>
@@ -560,7 +562,7 @@
         // ==========================================
         // ⚙️ นำ URL ของเว็บแอป (Web App URL) ที่ได้จาก Apps Script มาวางตรงนี้
         // ==========================================
-        const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzflLhLgSfZVCVmkVPsDVQNq4KX3GhLZ0Ib44s1ZrPznXfsNQgUphp1kh9P94NDtN7f/exec'; 
+        const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxNA2-sUavxI7c5aNBzzXYMEI2WGR5UOOIjh4WfBjuaGfGe6-IBDdXNbspn6QGvteDP/exec'; 
 
         const form = document.getElementById('giftForm');
         const submitBtn = document.getElementById('submitBtn');
@@ -576,33 +578,41 @@
             });
         };
 
+        // 🌟 ฟังก์ชันสำหรับแปลงไฟล์หลายรูปภาพเป็น Base64 🌟
+        const processMultipleFiles = async (files) => {
+            let processedFiles = [];
+            for (let i = 0; i < files.length; i++) {
+                let base64Data = await getBase64(files[i]);
+                processedFiles.push({
+                    filename: files[i].name,
+                    mimeType: files[i].type,
+                    data: base64Data
+                });
+            }
+            return processedFiles;
+        };
+
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            submitBtn.innerText = 'กำลังอัปโหลดรูปภาพ... 📦 (อาจใช้เวลาสักครู่)';
+            submitBtn.innerText = 'กำลังอัปโหลดรูปรอแปปนึงนะ... 📦 (อาจใช้เวลาสักครู่)';
             submitBtn.disabled = true;
 
             try {
-                const giftPicFile = document.getElementById('giftPic').files[0];
-                const proofPicFile = document.getElementById('proofPic').files[0];
+                // ดึงรายการไฟล์ทั้งหมด (อาจมีหลายรูป)
+                const giftPicFiles = document.getElementById('giftPic').files;
+                const proofPicFiles = document.getElementById('proofPic').files;
 
-                const giftPicBase64 = await getBase64(giftPicFile);
-                const proofPicBase64 = await getBase64(proofPicFile);
+                // ประมวลผลรูปรวมกันเป็น Array
+                const giftPicsData = await processMultipleFiles(giftPicFiles);
+                const proofPicsData = await processMultipleFiles(proofPicFiles);
 
                 const payload = {
                     youtubeName: document.getElementById('youtubeName').value,
                     senderName: document.getElementById('senderName').value,
                     giftDetail: document.getElementById('giftDetail').value,
-                    giftPic: {
-                        filename: giftPicFile.name,
-                        mimeType: giftPicFile.type,
-                        data: giftPicBase64
-                    },
-                    proofPic: {
-                        filename: proofPicFile.name,
-                        mimeType: proofPicFile.type,
-                        data: proofPicBase64
-                    }
+                    giftPics: giftPicsData, // ส่งไปแบบ Array
+                    proofPics: proofPicsData // ส่งไปแบบ Array
                 };
 
                 await fetch(GAS_WEB_APP_URL, {
