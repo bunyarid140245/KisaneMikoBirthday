@@ -73,13 +73,16 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 🌟 โลโก้ตรงกลางด้านนอก 🌟 */
+  /* 🌟 โลโก้ตรงกลางด้านนอก 🌟 */
         .center-logo {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             width: 90%;
-            max-width: 320px; /* ขนาดใหญ่ตรงกลาง */
-            margin: 0 auto 20px;
+            max-width: 320px;
+            margin: 0 auto 120px; /* เว้นที่ด้านล่างให้หัวน้องมิโกะเกาะขอบหน้าต่างได้พอดี */
             transition: transform 0.3s;
+            text-decoration: none;
         }
         .center-logo:hover {
             transform: scale(1.03) rotate(-2deg);
@@ -89,7 +92,10 @@
             height: auto;
             display: block;
             border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
+        
+        /* สไตล์สำหรับชื่อช่อง YouTube ใต้โลโก้ */
         .channel-name {
             display: flex;
             align-items: center;
@@ -111,6 +117,7 @@
             transform: scale(1.05);
             box-shadow: 0 8px 20px rgba(244, 114, 182, 0.4);
         }
+
 
         /* --- กล่องเนื้อหาหลัก --- */
         .welcome-card {
@@ -404,9 +411,9 @@
                 <div class="rules-text-box">
                     <p><strong>❌ ข้อห้ามในการส่งเป็นของขวัญ:</strong></p>
                     <ul>
-                        <li>อาหาร / น้ำ / ขนม  ที่เสียง่าย</li>
+                        <li>อาหาร / น้ำ / ขนม</li>
                         <li>ภาพ AI</li>
-                        <li>การดัดแปลงภาพหรือสื่อของผู้อื่น</li>
+                        <li>ดัดแปลงภาพหรือสื่อของผู้อื่น</li>
                         <li>สิ่งลามกอนาจาร (ทีมงานไม่อนุญาตให้นำมาแสดงในไลฟ์)</li>
                     </ul>
 
@@ -485,5 +492,3 @@
     </script>
 </body>
 </html>
-
-
