@@ -255,24 +255,41 @@
 
     <!-- MODAL 3: ข้อตกลงส่งของขวัญ (น้องเหงื่อตก) -->
     <div class="modal-overlay" id="giftAgreementModal">
-        <div class="modal-box">
-            <div class="speech-bubble" style="top: -5px; right: 25px;">รบกวนอ่านก่อนน้า~ 🎁</div>
-            <img src="เหงื่อตก.jpg" alt="มิโกะ" class="modal-image" style="width: 140px;" onerror="this.style.display='none'">
-            <h2 class="rules-title" style="margin-top: 15px;">ข้อตกลงในการส่งของขวัญ</h2>
-            <div class="rules-wrapper">
-                <div class="rules-section" style="margin-bottom: 15px;">
-                    <p style="font-weight: 700;">ผู้ที่ยังไม่ได้ติดต่อแอดมินหรือมิโกะ:</p>
-                    <p style="font-size: 0.9rem;">รบกวนติดต่อเพื่อรับช่องทางการส่งของขวัญที่ Server Discord ก่อนนะคะ</p>
-                </div>
-                <hr style="border: 0; border-top: 1px dashed #fbcfe8; margin: 12px 0;">
-                <div class="rules-section" style="margin-bottom: 15px;">
-                    <p style="font-weight: 700; color: #db2777;">❌ ข้อห้ามในการส่ง:</p>
-                    <ul class="rules-list" style="padding-left: 20px;">
-                        <li>อาหาร / ขนมที่เสียงง่าย / น้ำ</li>
-                        <li>สิ่งผิดกฎหมาย / สิ่งลามกอนาจาร</li>
+ <div class="modal-box">
+            <div class="speech-bubble" style="top: -20px; right: 10px;">รบกวนอ่านก่อนน้า~ 🎁</div>
+            
+            <div class="modal-scroll-content">
+                <img src="มองแรง.png" alt="มิโกะ" class="modal-image" onerror="this.style.display='none'">
+                <h2>ข้อตกลงในการส่งของขวัญ</h2>
+                
+                <div class="rules-content">
+                    <p><strong>ผู้ที่ยังไม่ได้ติดต่อแอดมินหรือมิโกะ:</strong><br>รบกวนติดต่อเพื่อรับช่องทางการส่งของขวัญที่ Server Discord ก่อนนะคะ</p>
+                    <hr style="border: 0; border-top: 1px dashed #fbcfe8; margin: 10px 0;">
+                    
+                    <p><strong>❌ ข้อห้ามในการส่ง:</strong></p>
+                    <ul>
+                        <li>อาหาร</li>
+                        <li>ขนมที่เสียง่าย เช่น ขนมปัง/เค้ก </li>
+                        <li>น้ำที่เสียงาย เช่น นม</li>
+                        <li>สิ่งผิดกฏหมาย</li>
+                        <li>สิ่งลามกอนาจาร</li>
                     </ul>
+
+                    <p><strong>📦 สำหรับของที่แตกหักง่าย/เปราะบางหรือมีคม:</strong><br>ควรห่อของขวัญให้มิดชิด ตัวอย่างเช่น:</p>
+                    <ul>
+                        <li>ของมีคม</li>
+                        <li>แก้ว</li>
+                        <li>กระดาษ</li>
+                        <li>สแตนดี้</li>
+                    </ul>
+
+                    <div class="warning-text">
+                        ⚠️ หากมีการเก็บเงินปลายทาง ทางเราขออนุญาตไม่รับของและส่งของคืนให้ผู้ส่งนะคะ<br>
+                        <span style="font-size: 0.85rem; font-weight: 400; color: #4b5563; display: inline-block; margin-top: 10px;">หากมีข้อสงสัยติดต่อ Discord: <a href="https://discord.gg/srWZ2hxk" target="_blank" style="color: #db2777; text-decoration: underline; font-weight: 700; font-size: 1.15rem; display: inline-block; margin-top: 5px;">ศาลเจ้า Kisane Miko</a></span>
+                    </div>
                 </div>
-                <button class="action-btn btn-green" onclick="acceptGiftAgreement()">รับทราบและตกลง 🌸</button>
+
+                <button class="submit-btn" id="agreeBtn">รับทราบและตกลง 🌸</button>
             </div>
         </div>
     </div>
@@ -462,6 +479,7 @@
     </script>
 </body>
 </html>
+
 
 
 
