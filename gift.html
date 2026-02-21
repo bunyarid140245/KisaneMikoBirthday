@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แบบฟอร์มส่งของขวัญให้มิโกะ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>วันเกิดของมิโกะ2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
-            --bg-top: #dbeafe;
-            --bg-bottom: #fce7f3;
+            --bg-top: #dbeafe; /* ฟ้าอ่อน */
+            --bg-bottom: #fce7f3; /* ชมพูอ่อน */
             --window-bar: #fbcfe8;
             --text-dark: #4b5563;
             --input-bg: #fff5f8;
             --input-border: #f9a8d4;
-            --btn-bg: #a7f3d0; 
-            --btn-hover: #6ee7b7;
-            --btn-text: #064e3b;
+            --btn-bg: #f472b6;
+            --btn-hover: #db2777;
+            --btn-gift-bg: #a7f3d0; /* สีเขียวมิ้นต์ */
+            --btn-gift-hover: #6ee7b7;
+            --btn-gift-text: #166534;
             --warning-bg: #fee2e2;
             --warning-text: #991b1b;
         }
@@ -38,7 +40,6 @@
             position: relative;
         }
 
-        /* 🌟 1. เพิ่มลายจุดจางๆ ให้พื้นหลังดูไม่โล่ง 🌟 */
         body::before {
             content: '';
             position: fixed;
@@ -49,6 +50,7 @@
             pointer-events: none;
         }
 
+        /* --- ซากุระร่วง --- */
         #sakura-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -69,22 +71,20 @@
             100% { transform: translateY(110vh) translateX(20px) rotate(360deg) scale(1); opacity: 0; }
         }
 
-        /* 🌟 2. สไตล์สำหรับรูปตกแต่งซ้าย-ขวา (ซ่อนในมือถือ) 🌟 */
         .side-deco {
-            display: none; /* ซ่อนเป็นค่าเริ่มต้น */
+            display: none;
             position: fixed;
             border-radius: 20px;
             border: 6px solid white;
             box-shadow: 0 15px 35px rgba(244, 114, 182, 0.2);
             z-index: 5;
-            pointer-events: none; /* ไม่ให้รูปบังการคลิกเมาส์ */
+            pointer-events: none;
         }
 
-        /* แสดงรูปตกแต่งเมื่อหน้าจอกว้างกว่า 1024px (จอคอมพิวเตอร์/แท็บเล็ตแนวนอน) */
         @media (min-width: 1024px) {
             .side-deco {
                 display: block;
-                width: 20vw; /* ขนาดสัมพันธ์กับความกว้างจอ */
+                width: 20vw;
                 max-width: 280px;
             }
             .left-deco {
@@ -108,7 +108,7 @@
             50% { transform: translateY(-45%) rotate(2deg); }
         }
 
-        /* 🌟 เพิ่มสไตล์สำหรับคลุมโลโก้และการ์ด 🌟 */
+        /* --- กล่องคอนเทนเนอร์หลักคลุมทั้งโลโก้และการ์ด --- */
         .main-wrapper {
             position: relative;
             z-index: 10;
@@ -116,7 +116,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            animation: floatUp 0.8s ease-out;
             padding: 30px 0;
+        }
+
+        @keyframes floatUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* 🌟 โลโก้ตรงกลางด้านนอก 🌟 */
@@ -125,8 +131,8 @@
             flex-direction: column;
             align-items: center;
             width: 90%;
-            max-width: 320px;
-            margin: 0 auto 120px; /* ปรับลดลงนิดหน่อยเผื่อที่ให้ชื่อด้านล่าง */
+            max-width: 320px; 
+            margin: 0 auto 140px; /* ระยะห่างเพื่อหลบหัวน้องมิโกะ */
             transition: transform 0.3s;
             text-decoration: none;
         }
@@ -140,8 +146,7 @@
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
-        
-        /* สไตล์สำหรับชื่อช่อง YouTube ใต้โลโก้ */
+
         .channel-name {
             display: flex;
             align-items: center;
@@ -164,7 +169,7 @@
             box-shadow: 0 8px 20px rgba(244, 114, 182, 0.4);
         }
 
-        /* --- คอนเทนเนอร์หลัก --- */
+        /* --- กล่องเนื้อหาหลัก --- */
         .wrapper {
             position: relative;
             z-index: 10;
@@ -260,8 +265,8 @@
         button.submit-btn {
             width: 100%;
             padding: 12px;
-            background-color: var(--btn-bg);
-            color: var(--btn-text);
+            background-color: var(--btn-gift-bg);
+            color: var(--btn-gift-text);
             border: none;
             border-radius: 10px;
             font-size: 1.2rem;
@@ -272,7 +277,7 @@
             box-shadow: 0 4px 10px rgba(167, 243, 208, 0.5);
         }
         button.submit-btn:hover:not(:disabled) {
-            background-color: var(--btn-hover);
+            background-color: var(--btn-gift-hover);
             transform: translateY(-2px);
         }
         button.submit-btn:disabled {
@@ -404,7 +409,7 @@
                     <p><strong>❌ ข้อห้ามในการส่ง:</strong></p>
                     <ul>
                         <li>อาหาร</li>
-                        <li>ขนมที่เสียง่าย เช่น ขนมปัง/เค้ก </li>
+                        <li>ขนมที่เสียง่าย ขนมปัง/เค้ก </li>
                         <li>น้ำที่เสียงาย เช่น นม</li>
                         <li>สิ่งผิดกฏหมาย</li>
                         <li>สิ่งลามกอนาจาร</li>
@@ -432,9 +437,9 @@
     <!-- 🌟 คลุมทั้งหมดด้วย main-wrapper และแทรกโลโก้ 🌟 -->
     <div class="main-wrapper">
         
-        <!-- โลโก้ศาลเจ้า (เพิ่มคำสั่ง onclick เรียกใช้ฟังก์ชันเปิดแอป) -->
+        <!-- โลโก้ศาลเจ้า (คลิกเพื่อไป Youtube) -->
         <a href="https://www.youtube.com/@KisaneMikoCh" target="_blank" class="center-logo" onclick="openYouTubeApp(event)">
-            <img src="logo_01.png" alt="Kisane Miko YouTube" onerror="this.style.display='none'">
+            <img src="logo_01.jpg" alt="Kisane Miko YouTube" onerror="this.style.display='none'">
             <!-- เพิ่มป้ายชื่อ Kisane Miko และไอคอน YouTube -->
             <div class="channel-name">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28">
@@ -456,7 +461,7 @@
 
                 <div class="form-content">
                     <h1>ส่งของขวัญให้แมวเขียว 🎁</h1>
-                    <p style="text-align: center; color: #888; font-size: 0.95rem; margin-top: -15px; margin-bottom: 20px;">กรอกรายละเอียดของขวัญที่จะส่งให้มิโกะได้เลย~ 🐈</p>
+                    <p style="text-align: center; color: #888; font-size: 0.95rem; margin-top: -15px; margin-bottom: 20px;">กรอกรายละเอียดของขวัญที่จะส่งให้มิโกะได้เลยเมี้ยว~ 🐈</p>
                     
                     <form id="giftForm">
                         <div class="form-group">
@@ -495,10 +500,12 @@
     <div class="modal-overlay" id="successModal">
         <div class="modal-box" style="border-color: #6ee7b7; padding: 30px 20px;">
             <span class="close-btn" id="closeModal">&times;</span>
-            <div class="speech-bubble" style="top: -25px; right: 15px;">ขอบคุณนะ!<br>ได้รับของขวัญแล้ว!</div>
+            
+            <!-- 🌟 ปรับตำแหน่งกล่องคำพูด (Speech Bubble) ให้ลงมาใกล้ของขวัญ 🌟 -->
+            <div class="speech-bubble" style="top: 25px; right: 5px; z-index: 20;">ขอบคุณนะ!<br>ได้รับของขวัญแล้ว!</div>
             
             <div class="modal-scroll-content" style="overflow: hidden;">
-                <img src="ของขวัญ.png" alt="ของขวัญ" class="success-image" onerror="this.style.display='none'">
+                <img src="ของขวัญ.png" alt="ของขวัญ" class="success-image" style="margin-top: 20px;" onerror="this.style.display='none'">
             </div>
         </div>
     </div>
@@ -639,7 +646,7 @@
                      
             } catch (error) {
                 console.error('Error:', error);
-                alert('เกิดข้อผิดพลาดในการส่งข้อมูล  ลองใหม่อีกครั้งนะ 😿');
+                alert('เกิดข้อผิดพลาดในการส่งข้อมูล ขนาดรูปภาพอาจจะใหญ่เกินไป ลองใหม่อีกครั้งนะเมี้ยว 😿');
             } finally {
                 submitBtn.innerText = 'แจ้งส่งของขวัญเลย! 🎀';
                 submitBtn.disabled = false;
@@ -653,4 +660,3 @@
     </script>
 </body>
 </html>
-
