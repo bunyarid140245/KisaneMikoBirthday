@@ -13,6 +13,7 @@
             --text-dark: #4b5563; --input-bg: #fff5f8; --input-border: #f9a8d4;
             --btn-bg: #f472b6; --btn-hover: #db2777;
             --btn-gift-bg: #a7f3d0; --btn-gift-hover: #6ee7b7; --btn-gift-text: #166534;
+            --warning-bg: #fee2e2; --warning-text: #991b1b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Mali', cursive; }
@@ -37,33 +38,51 @@
         .center-logo { display: flex; flex-direction: column; align-items: center; width: 90%; max-width: 300px; margin-bottom: 120px; text-decoration: none; cursor: pointer; transition: 0.3s; }
         .center-logo:hover { transform: scale(1.03) rotate(-2deg); }
         .center-logo img { width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .channel-name { margin-top: 15px; background: white; padding: 8px 25px; border-radius: 50px; border: 3px solid #fbcfe8; color: #db2777; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        
+        /* 🌟 ปุ่ม YouTube แบบในรูป 🌟 */
+        .yt-pill-btn {
+            margin-top: 15px;
+            background: white;
+            padding: 8px 25px;
+            border-radius: 50px;
+            color: #db2777;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(219, 39, 119, 0.15);
+            border: 2px solid #fbcfe8;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+        .yt-pill-btn:hover { background: #fff5f8; transform: scale(1.05); }
 
         .section { display: none; width: 90%; max-width: 450px; animation: fadeIn 0.5s ease; }
         .active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
         .wrapper { position: relative; width: 100%; }
+        /* 🌟 น้องมิโกะเกาะขอบหน้าต่าง 🌟 */
         .top-character { position: absolute; bottom: calc(100% - 22px); left: 50%; transform: translateX(-50%); width: 150px; z-index: 12; pointer-events: none; }
         
-        .window-box { background: white; border-radius: 15px; border: 3px solid var(--window-bar); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .window-header { background: var(--window-bar); height: 30px; display: flex; align-items: center; padding: 0 15px; gap: 6px; }
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .window-box { background: white; border-radius: 20px; border: 3px solid var(--window-bar); overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .window-header { background: var(--window-bar); height: 35px; display: flex; align-items: center; padding: 0 15px; gap: 8px; }
+        .dot { width: 14px; height: 14px; border-radius: 50%; }
         .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
 
-        .content { padding: 30px 25px; text-align: center; }
-        h1 { color: #db2777; font-size: 1.5rem; margin-bottom: 15px; }
-        .cover-img { width: 100%; max-width: 250px; border-radius: 20px; margin-bottom: 20px; }
+        .content { padding: 40px 30px; text-align: center; }
+        h1.title-text { color: #db2777; font-size: 1.7rem; margin-bottom: 12px; font-weight: 700; }
+        .cover-img { width: 100%; max-width: 280px; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); transition: 0.3s; }
+        .cover-img:hover { transform: scale(1.02); }
 
-        .action-btn { display: block; width: 100%; padding: 15px; border-radius: 50px; border: none; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: 0.3s; margin-bottom: 12px; }
-        .btn-pink { background: var(--btn-bg); color: white; box-shadow: 0 5px 15px rgba(244, 114, 182, 0.4); }
-        .btn-green { background: var(--btn-gift-bg); color: var(--btn-gift-text); box-shadow: 0 5px 15px rgba(167, 243, 208, 0.4); }
-        .action-btn:hover:not(:disabled) { transform: translateY(-3px); opacity: 0.9; }
-        .action-btn:disabled { background: #ccc; cursor: not-allowed; }
+        .action-btn { display: block; width: 100%; padding: 18px; border-radius: 50px; border: none; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.3s; margin-bottom: 15px; }
+        .btn-pink { background: var(--btn-bg); color: white; box-shadow: 0 6px 18px rgba(244, 114, 182, 0.4); }
+        .btn-green { background: var(--btn-gift-bg); color: var(--btn-gift-text); box-shadow: 0 6px 18px rgba(167, 243, 208, 0.4); }
+        .action-btn:hover:not(:disabled) { transform: translateY(-3px); opacity: 0.95; }
 
         .form-group { text-align: left; margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: 700; font-size: 0.9rem; color: var(--text-dark); }
-        input, textarea { width: 100%; padding: 12px; border: 2px solid var(--input-border); border-radius: 10px; background: var(--input-bg); font-size: 1rem; color: var(--text-dark); }
+        label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 1rem; color: var(--text-dark); }
+        input, textarea { width: 100%; padding: 14px; border: 2px solid var(--input-border); border-radius: 12px; background: var(--input-bg); font-size: 1rem; color: var(--text-dark); outline: none; }
         
         #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; }
         
@@ -79,9 +98,13 @@
         }
 
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 200; justify-content: center; align-items: center; }
-        .modal-box { background: white; padding: 35px 25px; border-radius: 20px; width: 90%; max-width: 400px; text-align: center; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 4px solid var(--window-bar); }
-        .modal-image { width: 100%; max-width: 200px; margin-top: 15px; border-radius: 12px; }
-        .back-link { display: inline-block; margin-top: 10px; color: #991b1b; text-decoration: underline; cursor: pointer; font-size: 0.9rem; }
+        .modal-box { background: white; padding: 35px 25px; border-radius: 20px; width: 90%; max-width: 420px; text-align: center; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 4px solid var(--window-bar); }
+        .modal-image { width: 100%; max-width: 220px; margin-top: 15px; border-radius: 12px; }
+        .back-link { display: inline-block; margin-top: 10px; color: #991b1b; text-decoration: underline; cursor: pointer; font-size: 0.95rem; }
+
+        .rules-content { text-align: left; font-size: 1rem; color: var(--text-dark); line-height: 1.6; background: var(--input-bg); padding: 15px; border-radius: 12px; margin: 15px 0; }
+        .rules-content ul { padding-left: 20px; margin-bottom: 10px; }
+        .warning-text { color: var(--warning-text); background: var(--warning-bg); padding: 12px; border-radius: 10px; font-weight: 700; text-align: center; font-size: 0.9rem; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -89,7 +112,7 @@
     <div id="loginOverlay">
         <img src="logo_01.png" style="width: 150px; border-radius: 20px; margin-bottom: 20px;" onerror="this.style.display='none'">
         <h2 style="color: #db2777;">ศาลเจ้า Kisane Miko</h2>
-        <p style="color: #666; margin-bottom: 30px;">กรุณาล็อกอิน Gmail เพื่อเข้าสู่ระบบค่ะ 🐈</p>
+        <p style="color: #666; margin: 15px 0 30px;">กรุณาล็อกอิน Gmail เพื่อเข้าร่วมกิจกรรมค่ะ 🐈</p>
         <div id="googleBtn"></div>
     </div>
 
@@ -99,12 +122,18 @@
     <img id="decoRight" src="อารมณ์ดี.png" alt="Deco" class="side-deco right-deco" onerror="this.style.display='none'">
 
     <div class="main-wrapper" id="mainUI" style="display: none;">
-        <a href="#" class="center-logo" onclick="openYouTubeApp(event)">
-            <img src="logo_01.png" onerror="this.style.display='none'">
-            <div class="channel-name"><span>Kisane Miko</span></div>
+        <!-- ส่วนโลโก้และปุ่ม YouTube -->
+        <a href="https://www.youtube.com/@KisaneMikoCh" target="_blank" class="center-logo" onclick="openYouTubeApp(event)">
+            <img src="logo_01.png" alt="Kisane Miko" onerror="this.style.display='none'">
+            <div class="yt-pill-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FF0000"/>
+                </svg>
+                <span>Kisane Miko</span>
+            </div>
         </a>
 
-        <!-- Section: Home -->
+        <!-- หน้าแรก (Home) -->
         <div id="homeSec" class="section active">
             <div class="wrapper">
                 <img src="รูปมิโกะพื้นหลังใส.png" class="top-character" onerror="this.style.display='none'">
@@ -112,23 +141,28 @@
                     <div class="window-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="content">
                         <img src="HappyBirthday.png" class="cover-img" onerror="this.style.display='none'">
-                        <h1>วันเกิดมิโกะ 2026 🐈💚</h1>
-                        <p style="font-size: 0.8rem; color: #999; margin-bottom: 20px;">ล็อกอินโดย: <span id="userMail"></span></p>
-                        <button class="action-btn btn-pink" onclick="go('wishSec')">เขียนคำอวยพร 💌</button>
-                        <button class="action-btn btn-green" onclick="go('giftSec')">ส่งของขวัญ 🎁</button>
+                        <h1 class="title-text">สุขสันต์วันเกิดให้มิโกะ 🐈💚</h1>
+                        <p style="color: var(--text-dark); line-height: 1.6; margin-bottom: 25px;">มาร่วมเขียนคำอวยพรน่ารักๆ <br>และส่งรอยยิ้มให้เจ้าแมวเขียวตัวนี้กันเถอะน้า~</p>
+                        
+                        <div style="font-size: 0.8rem; color: #999; margin-bottom: 20px; border-top: 1px dashed #fbcfe8; padding-top: 15px;">
+                            ล็อกอินโดย: <span id="userMail" style="font-weight: 700; color: #db2777;"></span>
+                        </div>
+
+                        <button class="action-btn btn-pink" onclick="openWishAgreement()">เริ่มเขียนคำอวยพร 💌</button>
+                        <button class="action-btn btn-green" onclick="go('giftSec')">ส่งของขวัญให้มิโกะ 🎁</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Section: Wish -->
+        <!-- หน้าเขียนคำอวยพร (Wish) -->
         <div id="wishSec" class="section">
             <div class="wrapper">
                 <img src="รูปมิโกะพื้นหลังใส.png" class="top-character" onerror="this.style.display='none'">
                 <div class="window-box">
                     <div class="window-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="content">
-                        <h1>ส่งคำอวยพร 💌</h1>
+                        <h1 class="title-text">คำอวยพรให้มิโกะ 💌</h1>
                         <form id="wishForm">
                             <div class="form-group"><label>ชื่อใน Youtube</label><input type="text" id="wYT" required placeholder="ชื่อช่องของคุณ..."></div>
                             <div class="form-group"><label>คำอวยพร</label><textarea id="wMsg" rows="4" required placeholder="พิมพ์สิ่งดีๆ ให้น้องแมวเขียว..."></textarea></div>
@@ -140,18 +174,18 @@
             </div>
         </div>
 
-        <!-- Section: Gift -->
+        <!-- หน้าส่งของขวัญ (Gift) -->
         <div id="giftSec" class="section">
             <div class="wrapper">
                 <img src="รูปมิโกะพื้นหลังใส.png" class="top-character" onerror="this.style.display='none'">
                 <div class="window-box">
                     <div class="window-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="content">
-                        <h1>ส่งของขวัญ 🎁</h1>
+                        <h1 class="title-text">ส่งของขวัญให้มิโกะ 🎁</h1>
                         <form id="giftForm">
                             <div class="form-group"><label>ชื่อใน Youtube</label><input type="text" id="gYT" required placeholder="ชื่อช่องของคุณ..."></div>
-                            <div class="form-group"><label>ชื่อผู้ส่งพัสดุ</label><input type="text" id="gName" required placeholder="ชื่อจ่าหน้ากล่อง..."></div>
-                            <div class="form-group"><label>รายละเอียด</label><textarea id="gDetail" rows="3" required placeholder="เช่น ตุ๊กตาแมว, แฟนอาร์ต..."></textarea></div>
+                            <div class="form-group"><label>ชื่อผู้ส่งพัสดุ</label><input type="text" id="gName" required placeholder="ชื่อที่จ่าหน้ากล่อง..."></div>
+                            <div class="form-group"><label>รายละเอียดของขวัญ</label><textarea id="gDetail" rows="3" required placeholder="เช่น ตุ๊กตาแมว, แฟนอาร์ต..."></textarea></div>
                             <div class="form-group"><label>รูปของขวัญ (หลายรูป)</label><input type="file" id="gPics" multiple required accept="image/*"></div>
                             <div class="form-group"><label>หลักฐานการส่ง (หลายรูป)</label><input type="file" id="gProofs" multiple required accept="image/*"></div>
                             <button type="submit" class="action-btn btn-green" id="gBtn">แจ้งส่งของขวัญ!</button>
@@ -163,18 +197,53 @@
         </div>
     </div>
 
-    <!-- 🌟 MODAL สำเร็จ (แบบแยกข้อความตามประเภท) 🌟 -->
-    <div class="modal-overlay" id="successModal">
+    <!-- 🌟 MODAL: ข้อตกลงคำอวยพร (ย้ายมาไว้ตรงนี้) 🌟 -->
+    <div class="modal-overlay" id="homeAgreementModal">
         <div class="modal-box">
-            <div class="speech-bubble" id="successBubble" style="top: -20px; right: 5px;">
-                ขอบคุณนะ!<br>ได้รับข้อมูลแล้ว!
+            <div class="speech-bubble" style="top: -20px; right: -10px;">อ่านก่อนน้า~ 🐾</div>
+            <img src="มองแรง.png" alt="มิโกะขอร้อง" style="width: 100px; margin-top: 15px;" onerror="this.style.display='none'">
+            <h2 style="color: #db2777; font-size: 1.3rem; margin-top: 10px;">ข้อตกลงก่อนส่งข้อความ</h2>
+            <div class="rules-content">
+                <p>เพื่อให้พื้นที่นี้น่ารักสำหรับมิโกะ:</p>
+                <ul>
+                    <li>กรุณาใช้ถ้อยคำที่สุภาพและน่ารัก</li>
+                    <li>ไม่ส่งข้อความหยาบคายหรือกระทบจิตใจ</li>
+                    <li>ร่วมกันสร้างรอยยิ้มให้มิโกะนะคะ 💚</li>
+                </ul>
             </div>
+            <button class="action-btn btn-pink" onclick="acceptWishAgreement()">ยอมรับและตกลง 🌸</button>
+        </div>
+    </div>
+
+    <!-- 🌟 MODAL: ข้อตกลงส่งของขวัญ 🌟 -->
+    <div class="modal-overlay" id="giftAgreementModal">
+        <div class="modal-box">
+            <div class="speech-bubble" style="top: -20px; right: 5px;">รบกวนอ่านก่อนน้า~ 🎁</div>
+            <img src="เหงื่อตก.jpg" alt="มิโกะ" style="width: 100px; margin-top: 15px;" onerror="this.style.display='none'">
+            <h2 style="color: #db2777; font-size: 1.3rem; margin-top: 10px;">กฎการส่งของขวัญ</h2>
+            <div class="rules-content">
+                <p><strong>❌ ข้อห้ามในการส่ง:</strong></p>
+                <ul>
+                    <li>อาหาร / ขนม / น้ำ</li>
+                    <li>สิ่งผิดกฏหมาย / สิ่งลามกอนาจาร</li>
+                    <li>ภาพ AI หรือสื่อละเมิดลิขสิทธิ์</li>
+                </ul>
+                <div class="warning-text">⚠️ หากมีเก็บเงินปลายทาง ทางเราไม่รับพัสดุนะคะ</div>
+            </div>
+            <button class="action-btn btn-green" onclick="document.getElementById('giftAgreementModal').style.display='none'">รับทราบและตกลง 🌸</button>
+        </div>
+    </div>
+
+    <!-- 🌟 MODAL: SUCCESS 🌟 -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-box" style="border: 4px solid #6ee7b7;">
+            <div class="speech-bubble" id="successBubble" style="top: -20px; right: 5px;">ขอบคุณนะ!</div>
             <h2 id="successTitle" style="color: #27c93f; margin-top: 20px;">ส่งสำเร็จแล้ว! ✨</h2>
             <img src="ของขวัญ.png" id="successImg" class="modal-image" onerror="this.style.display='none'">
-            <p id="successDesc" style="margin-top: 15px; font-size: 0.9rem; color: #4b5563;">ขอบคุณที่ร่วมเป็นส่วนหนึ่งในวันเกิดมิโกะนะคะ 🐈💚</p>
+            <p id="successDesc" style="margin-top: 15px; font-size: 0.85rem; color: #4b5563;">ขอบคุณที่ร่วมเป็นส่วนหนึ่งในวันเกิดมิโกะนะคะ 🐈💚</p>
             <div style="margin-top: 20px;">
-                <button class="action-btn btn-pink" onclick="closeSuccess('homeSec')">ไปหน้าหลัก (ทำอย่างอื่นต่อ) 🐈</button>
-                <button class="action-btn btn-green" onclick="closeSuccess()" id="sendMoreBtn" style="background:#eee; color:#666;">ส่งข้อความเพิ่ม 🐾</button>
+                <button class="action-btn btn-pink" onclick="closeSuccess('homeSec')">ไปหน้าหลัก 🐈</button>
+                <button class="action-btn btn-green" onclick="closeSuccess()" id="sendMoreBtn" style="background:#eee; color:#666; font-size: 0.9rem; padding: 10px;">ส่งเพิ่ม 🐾</button>
             </div>
         </div>
     </div>
@@ -184,7 +253,6 @@
         const GAS_URL = "https://script.google.com/macros/s/AKfycbxNA2-sUavxI7c5aNBzzXYMEI2WGR5UOOIjh4WfBjuaGfGe6-IBDdXNbspn6QGvteDP/exec";
         
         let email = "";
-
         const decoConfig = {
             homeSec: { left: "อร่อย.png", right: "อารมณ์ดี.png" },
             wishSec: { left: "donate_miko_03.png", right: "โกรธ.png" },
@@ -195,20 +263,35 @@
             google.accounts.id.initialize({
                 client_id: CLIENT_ID,
                 callback: res => {
-                    const p = JSON.parse(atob(res.credential.split('.')[1]));
-                    email = p.email;
+                    const payload = JSON.parse(atob(res.credential.split('.')[1]));
+                    email = payload.email;
                     document.getElementById('userMail').innerText = email;
                     document.getElementById('loginOverlay').style.display = 'none';
                     document.getElementById('mainUI').style.display = 'flex';
                     initSakura();
                 }
             });
-            google.accounts.id.renderButton(document.getElementById("googleBtn"), { theme: "outline", size: "large", shape: "pill" });
+            google.accounts.id.renderButton(document.getElementById("googleBtn"), { theme: "outline", size: "large", shape: "pill", text: "signin_with" });
         };
+
+        // 🌟 ฟังก์ชันจัดการ Pop-up และการเปลี่ยนหน้า 🌟
+        function openWishAgreement() {
+            document.getElementById('homeAgreementModal').style.display = 'flex';
+        }
+
+        function acceptWishAgreement() {
+            document.getElementById('homeAgreementModal').style.display = 'none';
+            go('wishSec');
+        }
 
         function go(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
+            
+            if (id === 'giftSec') {
+                document.getElementById('giftAgreementModal').style.display = 'flex';
+            }
+
             if (decoConfig[id]) {
                 const left = document.getElementById('decoLeft');
                 const right = document.getElementById('decoRight');
@@ -222,7 +305,6 @@
             window.scrollTo(0,0);
         }
 
-        // 🌟 ฟังก์ชันโชว์ความสำเร็จแบบแยกประเภท 🌟
         function showSuccess(type) {
             const bubble = document.getElementById('successBubble');
             const title = document.getElementById('successTitle');
@@ -232,7 +314,7 @@
             if (type === 'wish') {
                 bubble.innerHTML = "ขอบคุณนะ!<br>ได้รับคำอวยพรแล้ว!";
                 title.innerText = "ส่งคำอวยพรสำเร็จแล้ว! ✨";
-                desc.innerText = "มิโกะได้รับความปรารถนาดีของคุณแล้วนะ~ 🐈💚";
+                desc.innerText = "มิโกะได้รับความปรารถนาดีของคุณแล้วนะเมี้ยว~ 🐈💚";
                 btnMore.innerText = "เขียนคำอวยพรเพิ่ม 🐾";
             } else {
                 bubble.innerHTML = "ขอบคุณนะ!<br>ได้รับของขวัญแล้ว!";
@@ -254,7 +336,6 @@
             r.onload = () => res({ filename: f.name, mimeType: f.type, data: r.result.split(',')[1] });
         });
 
-        // ส่งข้อมูล Wish
         document.getElementById('wishForm').onsubmit = async e => {
             e.preventDefault();
             const b = document.getElementById('wBtn'); b.disabled = true; b.innerText = "กำลังส่ง...";
@@ -265,7 +346,6 @@
             b.disabled = false; b.innerText = "ส่งคำอวยพรเลย!";
         };
 
-        // ส่งข้อมูล Gift
         document.getElementById('giftForm').onsubmit = async e => {
             e.preventDefault();
             const b = document.getElementById('gBtn'); b.disabled = true; b.innerText = "กำลังอัปโหลด...";
@@ -298,5 +378,3 @@
     </script>
 </body>
 </html>
-
-
