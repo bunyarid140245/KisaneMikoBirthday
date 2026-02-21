@@ -69,7 +69,6 @@
         
         #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; }
         
-        /* 🌟 สไตล์ Speech Bubble สำหรับ Modal 🌟 */
         .speech-bubble {
             position: absolute; background: white; border: 2.5px solid #86efac; border-radius: 50px;
             padding: 8px 18px; color: #166534; font-weight: 700; font-size: 0.95rem;
@@ -86,12 +85,10 @@
         .modal-image { width: 100%; max-width: 150px; margin: 10px auto; display: block; border-radius: 12px; }
         .back-link { display: inline-block; margin-top: 10px; color: #991b1b; text-decoration: underline; cursor: pointer; font-size: 0.95rem; }
 
-        /* 🌟 เนื้อหากฎระเบียบตามแบบ 🌟 */
+        /* กฎระเบียบ */
         .rules-wrapper { text-align: left; font-size: 0.95rem; color: #4b5563; line-height: 1.6; margin: 15px 0; }
         .rules-section { margin-bottom: 15px; }
         .rules-title { font-weight: 700; color: #db2777; font-size: 1.4rem; text-align: center; margin-bottom: 15px; }
-        .sub-text { background: #fdf2f8; padding: 12px; border-radius: 12px; border-left: 4px solid #fbcfe8; margin-bottom: 15px; font-size: 0.9rem; }
-        
         .rules-list { list-style: none; padding: 0; }
         .rules-list li { position: relative; padding-left: 25px; margin-bottom: 8px; }
         .rules-list li::before { content: '•'; position: absolute; left: 10px; color: #db2777; font-weight: bold; }
@@ -123,7 +120,7 @@
             </div>
         </a>
 
-        <!-- Home -->
+        <!-- หน้าแรก (Home) -->
         <div id="homeSec" class="section active">
             <div class="wrapper">
                 <img src="รูปมิโกะพื้นหลังใส.png" class="top-character" onerror="this.style.display='none'">
@@ -135,14 +132,13 @@
                         <p style="color: var(--text-dark); line-height: 1.6; margin-bottom: 25px;">มาร่วมเขียนคำอวยพรน่ารักๆ <br>และส่งรอยยิ้มให้เจ้าแมวเขียวตัวนี้กันเถอะน้า~</p>
                         <div style="font-size: 0.8rem; color: #999; margin-bottom: 20px; border-top: 1px dashed #fbcfe8; padding-top: 15px;">ล็อกอินโดย: <span id="userMail" style="font-weight: 700; color: #db2777;"></span></div>
                         <button class="action-btn btn-pink" onclick="openWishAgreement()">เริ่มเขียนคำอวยพร 💌</button>
-                        <!-- 🌟 เปลี่ยนจาก go('giftSec') เป็นการเปิด Pop-up กฎก่อน 🌟 -->
-                        <button class="action-btn btn-green" onclick="openGiftAgreement()">ส่งของขวัญให้มิโกะ 🎁</button>
+                        <button class="action-btn btn-green" onclick="go('giftSec')">ส่งของขวัญให้มิโกะ 🎁</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Wish Form -->
+        <!-- หน้าคำอวยพร (Wish) -->
         <div id="wishSec" class="section">
             <div class="wrapper">
                 <img src="รูปมิโกะพื้นหลังใส.png" class="top-character" onerror="this.style.display='none'">
@@ -161,7 +157,7 @@
             </div>
         </div>
 
-        <!-- Gift Form -->
+        <!-- หน้าส่งของขวัญ (Gift) -->
         <div id="giftSec" class="section">
             <div class="wrapper">
                 <img src="รูปมิโกะพื้นหลังใส.png" class="top-character" onerror="this.style.display='none'">
@@ -184,56 +180,43 @@
         </div>
     </div>
 
-    <!-- 🌟 MODAL: ข้อตกลงคำอวยพร 🌟 -->
-    <div class="modal-overlay" id="homeAgreementModal">
-        <div class="modal-box">
-            <div class="speech-bubble" style="top: -20px; right: -10px;">อ่านก่อนน้า~ 🐾</div>
-            <img src="มองแรง.png" alt="มิโกะ" class="modal-image" onerror="this.style.display='none'">
-            <h2 class="rules-title">ข้อตกลงก่อนส่งข้อความ</h2>
-            <div class="rules-wrapper">
-                <div class="sub-text">เพื่อให้พื้นที่นี้น่ารักสำหรับมิโกะ:</div>
-                <ul class="rules-list">
-                    <li>กรุณาใช้ถ้อยคำที่สุภาพและน่ารัก</li>
-                    <li>ไม่ส่งข้อความหยาบคายหรือกระทบจิตใจ</li>
-                    <li>ร่วมกันสร้างรอยยิ้มให้มิโกะนะคะ 💚</li>
-                </ul>
-            </div>
-            <button class="action-btn btn-pink" onclick="acceptWishAgreement()">ยอมรับและตกลง 🌸</button>
-        </div>
-    </div>
-
-    <!-- 🌟 MODAL: ข้อตกลงส่งของขวัญ (ต้องยอมรับก่อนถึงจะไปหน้า Gift) 🌟 -->
+    <!-- 🌟 MODAL: ข้อตกลงที่เด้งขึ้นมาทันทีหลัง Login 🌟 -->
     <div class="modal-overlay" id="giftAgreementModal">
         <div class="modal-box">
+            <!-- Speech Bubble ขอบคุณ/รบกวนอ่าน -->
             <div class="speech-bubble" style="top: -5px; right: 25px;">รบกวนอ่านก่อนน้า~ 🎁</div>
+            
+            <!-- รูปภาพมิโกะแอบหลังกำแพง (จากรูปตัวอย่าง) -->
             <img src="เหงื่อตก.jpg" alt="มิโกะ" class="modal-image" style="width: 140px;" onerror="this.style.display='none'">
+            
             <h2 class="rules-title" style="margin-top: 15px;">ข้อตกลงในการส่งของขวัญ</h2>
+            
             <div class="rules-wrapper">
                 <div class="rules-section">
                     <p style="font-weight: 700;">ผู้ที่ยังไม่ได้ติดต่อแอดมินหรือมิโกะ:</p>
                     <p style="font-size: 0.9rem;">รบกวนติดต่อเพื่อรับช่องทางการส่งของขวัญที่ Server Discord ก่อนนะคะ</p>
                 </div>
+                
                 <hr style="border: 0; border-top: 1px dashed #fbcfe8; margin: 12px 0;">
+
                 <div class="rules-section">
                     <p style="font-weight: 700; color: #db2777;">❌ ข้อห้ามในการส่ง:</p>
                     <ul class="rules-list">
-                        <li>อาหาร</li>
-                        <li>ขนมที่เสียง่าย เช่น ขนมปัง/เค้ก</li>
+                        <li>อาหาร / ขนมที่เสียง่าย เช่น ขนมปัง, เค้ก</li>
                         <li>น้ำที่เสียงง่าย เช่น นม</li>
-                        <li>สิ่งผิดกฎหมาย</li>
-                        <li>สิ่งลามกอนาจาร</li>
+                        <li>สิ่งผิดกฎหมาย / สิ่งลามกอนาจาร</li>
                     </ul>
                 </div>
+
                 <div class="rules-section">
                     <p style="font-weight: 700;">📦 สำหรับของที่แตกหักง่าย/เปราะบางหรือมีคม:</p>
-                    <p style="font-size: 0.9rem; margin-bottom: 5px;">ควรห่อของขวัญให้มิดชิด ตัวอย่างเช่น:</p>
+                    <p style="font-size: 0.9rem;">ควรห่อของขวัญให้มิดชิด ตัวอย่างเช่น:</p>
                     <ul class="rules-list">
-                        <li>ของมีคม</li>
-                        <li>แก้ว</li>
-                        <li>กระดาษ</li>
-                        <li>สแตนดี้</li>
+                        <li>ของมีคม / แก้ว / กระดาษ / สแตนดี้</li>
                     </ul>
                 </div>
+
+                <!-- กล่องคำเตือนสีชมพู/แดงอ่อน -->
                 <div class="warning-box">
                     ⚠️ หากมีการเก็บเงินปลายทาง ทางเราขออนุญาตไม่รับของและส่งของคืนให้ผู้ส่งนะคะ<br>
                     <div style="margin-top: 8px; font-weight: 400; font-size: 0.85rem; color: #666;">
@@ -242,8 +225,26 @@
                     </div>
                 </div>
             </div>
-            <!-- 🌟 เปลี่ยนปุ่มให้เรียก acceptGiftAgreement 🌟 -->
-            <button class="action-btn btn-green" style="margin-bottom: 0;" onclick="acceptGiftAgreement()">รับทราบและตกลง 🌸</button>
+            
+            <!-- ปุ่มยอมรับสีเขียว -->
+            <button class="action-btn btn-green" style="margin-bottom: 0;" onclick="closeMainAgreement()">รับทราบและตกลง 🌸</button>
+        </div>
+    </div>
+
+    <!-- MODAL: ข้อตกลงคำอวยพร (เฉพาะตอนกดเข้าหน้าคำอวยพร) -->
+    <div class="modal-overlay" id="homeAgreementModal">
+        <div class="modal-box">
+            <div class="speech-bubble" style="top: -20px; right: -10px;">อ่านก่อนน้า~ 🐾</div>
+            <img src="มองแรง.png" alt="มิโกะ" class="modal-image" onerror="this.style.display='none'">
+            <h2 class="rules-title">ข้อตกลงก่อนส่งข้อความ</h2>
+            <div class="rules-wrapper">
+                <ul class="rules-list">
+                    <li>กรุณาใช้ถ้อยคำที่สุภาพและน่ารัก</li>
+                    <li>ไม่ส่งข้อความหยาบคายหรือกระทบจิตใจ</li>
+                    <li>ร่วมกันสร้างรอยยิ้มให้มิโกะนะคะ 💚</li>
+                </ul>
+            </div>
+            <button class="action-btn btn-pink" onclick="document.getElementById('homeAgreementModal').style.display='none'; go('wishSec');">ยอมรับและตกลง 🌸</button>
         </div>
     </div>
 
@@ -281,19 +282,21 @@
                     document.getElementById('userMail').innerText = email;
                     document.getElementById('loginOverlay').style.display = 'none';
                     document.getElementById('mainUI').style.display = 'flex';
+                    // 🌟 แสดง Pop-up กฎและข้อตกลงทันทีที่เข้าหน้าหลัก (หลัง Login) 🌟
+                    document.getElementById('giftAgreementModal').style.display = 'flex';
                     initSakura();
                 }
             });
             google.accounts.id.renderButton(document.getElementById("googleBtn"), { theme: "outline", size: "large", shape: "pill", text: "signin_with" });
         };
 
-        // 🌟 Wish Section Management 🌟
-        function openWishAgreement() { document.getElementById('homeAgreementModal').style.display = 'flex'; }
-        function acceptWishAgreement() { document.getElementById('homeAgreementModal').style.display = 'none'; go('wishSec'); }
+        function closeMainAgreement() {
+            document.getElementById('giftAgreementModal').style.display = 'none';
+        }
 
-        // 🌟 Gift Section Management 🌟
-        function openGiftAgreement() { document.getElementById('giftAgreementModal').style.display = 'flex'; }
-        function acceptGiftAgreement() { document.getElementById('giftAgreementModal').style.display = 'none'; go('giftSec'); }
+        function openWishAgreement() {
+            document.getElementById('homeAgreementModal').style.display = 'flex';
+        }
 
         function go(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -321,13 +324,11 @@
             if (type === 'wish') {
                 bubble.innerHTML = "ขอบคุณนะ!<br>ได้รับคำอวยพรแล้ว!";
                 title.innerText = "ส่งคำอวยพรสำเร็จแล้ว! ✨";
-                desc.innerText = "มิโกะได้รับความปรารถนาดีของคุณแล้วนะ~ 🐈💚";
-                btnMore.innerText = "เขียนคำอวยพรเพิ่ม 🐾";
+                desc.innerText = "มิโกะได้รับความปรารถนาดีของคุณแล้วนะเมี้ยว~ 🐈💚";
             } else {
                 bubble.innerHTML = "ขอบคุณนะ!<br>ได้รับของขวัญแล้ว!";
                 title.innerText = "แจ้งส่งของขวัญสำเร็จ! ✨";
                 desc.innerText = "รอติดตามเปิดกล่องของขวัญในไลฟ์ได้เลยนะคะ! 🎁✨";
-                btnMore.innerText = "แจ้งส่งของขวัญเพิ่ม 🐾";
                 confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
             }
             document.getElementById('successModal').style.display = 'flex';
@@ -364,7 +365,7 @@
                 giftPics: await Promise.all([...document.getElementById('gPics').files].map(toB64)),
                 proofPics: await Promise.all([...document.getElementById('gProofs').files].map(toB64))
             };
-            await fetch(GAS_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(d) });
+            await fetch(GAS_URL, { method: 'POST', body: JSON.stringify(d) });
             document.getElementById('giftForm').reset();
             showSuccess('gift');
             b.disabled = false; b.innerText = "แจ้งส่งของขวัญ!";
