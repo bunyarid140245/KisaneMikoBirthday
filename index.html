@@ -121,6 +121,7 @@
 
         /* --- กล่องเนื้อหาหลัก --- */
         .welcome-card {
+            position: relative;
             background: white;
             padding: 40px 30px;
             border-radius: 25px;
@@ -129,6 +130,18 @@
             max-width: 450px;
             text-align: center;
             border: 4px solid var(--window-bar);
+        }
+
+        /* 🌟 รูปน้องมิโกะเกาะขอบบน 🌟 */
+        .top-character {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px;
+            margin-bottom: -23px;
+            z-index: 12;
+            pointer-events: none;
         }
 
         /* รูปหน้าปก (เค้กวันเกิด) */
@@ -382,6 +395,9 @@
         </a>
         <!-- การ์ดต้อนรับ -->
         <div class="welcome-card">
+            
+            <!-- 🌟 เพิ่มรูปน้องมิโกะเกาะขอบบนกลับมา 🌟 -->
+            <img src="รูปมิโกะพื้นหลังใส.png" alt="Miko" class="top-character" onerror="this.style.display='none'">
             
             <!-- ใช้รูป HappyBirthday.png เป็นรูปหลัก -->
             <img src="HappyBirthday.png" alt="มิโกะกับเค้กวันเกิด" class="cover-image" onerror="this.style.display='none'">
