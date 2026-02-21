@@ -135,7 +135,8 @@
                         <p style="color: var(--text-dark); line-height: 1.6; margin-bottom: 25px;">มาร่วมเขียนคำอวยพรน่ารักๆ <br>และส่งรอยยิ้มให้เจ้าแมวเขียวตัวนี้กันเถอะน้า~</p>
                         <div style="font-size: 0.8rem; color: #999; margin-bottom: 20px; border-top: 1px dashed #fbcfe8; padding-top: 15px;">ล็อกอินโดย: <span id="userMail" style="font-weight: 700; color: #db2777;"></span></div>
                         <button class="action-btn btn-pink" onclick="openWishAgreement()">เริ่มเขียนคำอวยพร 💌</button>
-                        <button class="action-btn btn-green" onclick="go('giftSec')">ส่งของขวัญให้มิโกะ 🎁</button>
+                        <!-- 🌟 เปลี่ยนจาก go('giftSec') เป็นการเปิด Pop-up กฎก่อน 🌟 -->
+                        <button class="action-btn btn-green" onclick="openGiftAgreement()">ส่งของขวัญให้มิโกะ 🎁</button>
                     </div>
                 </div>
             </div>
@@ -201,36 +202,28 @@
         </div>
     </div>
 
-    <!-- 🌟 MODAL: ข้อตกลงส่งของขวัญ (ตามแบบรูปตัวอย่าง) 🌟 -->
+    <!-- 🌟 MODAL: ข้อตกลงส่งของขวัญ (ต้องยอมรับก่อนถึงจะไปหน้า Gift) 🌟 -->
     <div class="modal-overlay" id="giftAgreementModal">
         <div class="modal-box">
-            <!-- Speech Bubble ด้านบนขวาของรูปภาพ -->
             <div class="speech-bubble" style="top: -5px; right: 25px;">รบกวนอ่านก่อนน้า~ 🎁</div>
-            
-            <!-- รูปภาพมิโกะแอบแว่น (ตามภาพตัวอย่าง) -->
             <img src="เหงื่อตก.jpg" alt="มิโกะ" class="modal-image" style="width: 140px;" onerror="this.style.display='none'">
-            
             <h2 class="rules-title" style="margin-top: 15px;">ข้อตกลงในการส่งของขวัญ</h2>
-            
             <div class="rules-wrapper">
                 <div class="rules-section">
                     <p style="font-weight: 700;">ผู้ที่ยังไม่ได้ติดต่อแอดมินหรือมิโกะ:</p>
                     <p style="font-size: 0.9rem;">รบกวนติดต่อเพื่อรับช่องทางการส่งของขวัญที่ Server Discord ก่อนนะคะ</p>
                 </div>
-                
                 <hr style="border: 0; border-top: 1px dashed #fbcfe8; margin: 12px 0;">
-
                 <div class="rules-section">
                     <p style="font-weight: 700; color: #db2777;">❌ ข้อห้ามในการส่ง:</p>
                     <ul class="rules-list">
                         <li>อาหาร</li>
                         <li>ขนมที่เสียง่าย เช่น ขนมปัง/เค้ก</li>
-                        <li>น้ำที่เสียง่าย เช่น นม</li>
+                        <li>น้ำที่เสียงง่าย เช่น นม</li>
                         <li>สิ่งผิดกฎหมาย</li>
                         <li>สิ่งลามกอนาจาร</li>
                     </ul>
                 </div>
-
                 <div class="rules-section">
                     <p style="font-weight: 700;">📦 สำหรับของที่แตกหักง่าย/เปราะบางหรือมีคม:</p>
                     <p style="font-size: 0.9rem; margin-bottom: 5px;">ควรห่อของขวัญให้มิดชิด ตัวอย่างเช่น:</p>
@@ -241,8 +234,6 @@
                         <li>สแตนดี้</li>
                     </ul>
                 </div>
-
-                <!-- กล่องคำเตือนสีแดงอ่อน -->
                 <div class="warning-box">
                     ⚠️ หากมีการเก็บเงินปลายทาง ทางเราขออนุญาตไม่รับของและส่งของคืนให้ผู้ส่งนะคะ<br>
                     <div style="margin-top: 8px; font-weight: 400; font-size: 0.85rem; color: #666;">
@@ -251,9 +242,8 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- ปุ่มยอมรับสีเขียว -->
-            <button class="action-btn btn-green" style="margin-bottom: 0;" onclick="document.getElementById('giftAgreementModal').style.display='none'">รับทราบและตกลง 🌸</button>
+            <!-- 🌟 เปลี่ยนปุ่มให้เรียก acceptGiftAgreement 🌟 -->
+            <button class="action-btn btn-green" style="margin-bottom: 0;" onclick="acceptGiftAgreement()">รับทราบและตกลง 🌸</button>
         </div>
     </div>
 
@@ -297,18 +287,18 @@
             google.accounts.id.renderButton(document.getElementById("googleBtn"), { theme: "outline", size: "large", shape: "pill", text: "signin_with" });
         };
 
+        // 🌟 Wish Section Management 🌟
         function openWishAgreement() { document.getElementById('homeAgreementModal').style.display = 'flex'; }
         function acceptWishAgreement() { document.getElementById('homeAgreementModal').style.display = 'none'; go('wishSec'); }
+
+        // 🌟 Gift Section Management 🌟
+        function openGiftAgreement() { document.getElementById('giftAgreementModal').style.display = 'flex'; }
+        function acceptGiftAgreement() { document.getElementById('giftAgreementModal').style.display = 'none'; go('giftSec'); }
 
         function go(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             
-            // 🌟 แสดง Pop-up กฎการส่งของขวัญทันทีที่เลือก Gift 🌟
-            if (id === 'giftSec') {
-                document.getElementById('giftAgreementModal').style.display = 'flex';
-            }
-
             if (decoConfig[id]) {
                 const left = document.getElementById('decoLeft');
                 const right = document.getElementById('decoRight');
@@ -331,7 +321,7 @@
             if (type === 'wish') {
                 bubble.innerHTML = "ขอบคุณนะ!<br>ได้รับคำอวยพรแล้ว!";
                 title.innerText = "ส่งคำอวยพรสำเร็จแล้ว! ✨";
-                desc.innerText = "มิโกะได้รับความปรารถนาดีของคุณแล้วนะเมี้ยว~ 🐈💚";
+                desc.innerText = "มิโกะได้รับความปรารถนาดีของคุณแล้วนะ~ 🐈💚";
                 btnMore.innerText = "เขียนคำอวยพรเพิ่ม 🐾";
             } else {
                 bubble.innerHTML = "ขอบคุณนะ!<br>ได้รับของขวัญแล้ว!";
