@@ -23,8 +23,8 @@
         .sakura { position: absolute; background-color: #ffb7c5; border-radius: 100% 0% 100% 0%; opacity: 0.6; animation: fall linear infinite; }
         @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); } }
 
-        /* 🌟 ตัวละครลอยข้างๆ (Side Deco) 🌟 */
-        .side-deco { display: none; position: fixed; border-radius: 20px; border: 6px solid white; box-shadow: 0 15px 35px rgba(244, 114, 182, 0.2); z-index: 5; pointer-events: none; transition: all 0.5s ease-in-out; }
+        /* ตัวละครลอยข้าง */
+        .side-deco { display: none; position: fixed; border-radius: 20px; border: 6px solid white; box-shadow: 0 15px 35px rgba(244, 114, 182, 0.2); z-index: 5; pointer-events: none; transition: opacity 0.5s ease-in-out; }
         @media (min-width: 1024px) { 
             .side-deco { display: block; width: 18vw; max-width: 220px; } 
             .left-deco { top: 50%; left: 5%; animation: floatLeft 6s ease-in-out infinite; } 
@@ -38,11 +38,10 @@
         .center-logo { display: flex; flex-direction: column; align-items: center; width: 90%; max-width: 300px; margin-bottom: 120px; text-decoration: none; cursor: pointer; transition: 0.3s; }
         .center-logo:hover { transform: scale(1.03) rotate(-2deg); }
         .center-logo img { width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .channel-name { margin-top: 15px; background: white; padding: 8px 25px; border-radius: 50px; border: 3px solid #fbcfe8; color: #db2777; font-weight: 700; display: flex; align-items: center; gap: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .channel-name { margin-top: 15px; background: white; padding: 8px 25px; border-radius: 50px; border: 3px solid #fbcfe8; color: #db2777; font-weight: 700; display: flex; align-items: center; gap: 8px; }
 
-        /* การจัดการส่วนหน้าต่าง */
         .section { display: none; width: 90%; max-width: 450px; animation: fadeIn 0.5s ease; }
-        .section.active { display: block; }
+        .active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
         .wrapper { position: relative; width: 100%; }
@@ -54,30 +53,25 @@
         .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
 
         .content { padding: 30px 25px; text-align: center; }
-        h1 { color: #db2777; font-size: 1.5rem; margin-bottom: 15px; font-weight: 700; }
-        .cover-img { width: 100%; max-width: 250px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        h1 { color: #db2777; font-size: 1.5rem; margin-bottom: 15px; }
+        .cover-img { width: 100%; max-width: 250px; border-radius: 20px; margin-bottom: 20px; }
 
-        .action-btn { display: block; width: 100%; padding: 15px; border-radius: 50px; border: none; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: 0.3s; margin-bottom: 15px; position: relative; overflow: hidden; }
+        .action-btn { display: block; width: 100%; padding: 15px; border-radius: 50px; border: none; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: 0.3s; margin-bottom: 12px; }
         .btn-pink { background: var(--btn-bg); color: white; box-shadow: 0 5px 15px rgba(244, 114, 182, 0.4); }
         .btn-green { background: var(--btn-gift-bg); color: var(--btn-gift-text); box-shadow: 0 5px 15px rgba(167, 243, 208, 0.4); }
         .action-btn:hover:not(:disabled) { transform: translateY(-3px); opacity: 0.9; }
-        .action-btn:disabled { background: #e5e7eb; color: #9ca3af; cursor: not-allowed; transform: none; }
+        .action-btn:disabled { background: #ccc; cursor: not-allowed; }
 
         .form-group { text-align: left; margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: 700; font-size: 0.9rem; color: var(--text-dark); }
-        input, textarea { width: 100%; padding: 12px; border: 2px solid var(--input-border); border-radius: 10px; background: var(--input-bg); font-size: 1rem; color: var(--text-dark); outline: none; }
-        input:focus, textarea:focus { background: white; border-color: var(--btn-bg); }
+        input, textarea { width: 100%; padding: 12px; border: 2px solid var(--input-border); border-radius: 10px; background: var(--input-bg); font-size: 1rem; color: var(--text-dark); }
         
-        /* 🔒 Login & Modals */
         #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; }
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 200; justify-content: center; align-items: center; }
-        .modal-box { background: white; padding: 35px 25px; border-radius: 20px; width: 90%; max-width: 400px; text-align: center; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .close-btn { position: absolute; top: 10px; right: 20px; font-size: 2rem; color: #999; cursor: pointer; }
-
+        
         /* 💬 Speech Bubble 💬 */
         .speech-bubble {
             position: absolute; background: white; border: 2.5px solid #86efac; border-radius: 50px;
-            padding: 10px 20px; color: #166534; font-weight: 700; font-size: 1rem;
+            padding: 10px 20px; color: #166534; font-weight: 700; font-size: 0.95rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 101; transform: rotate(5deg);
         }
         .speech-bubble::after {
@@ -86,37 +80,35 @@
             border-color: #86efac transparent transparent transparent;
         }
 
-        .back-link { display: inline-block; margin-top: 10px; color: #9ca3af; text-decoration: underline; cursor: pointer; font-size: 0.9rem; }
-        .back-link:hover { color: var(--btn-hover); }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 200; justify-content: center; align-items: center; }
+        .modal-box { background: white; padding: 35px 25px; border-radius: 20px; width: 90%; max-width: 400px; text-align: center; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 4px solid var(--window-bar); }
+        .modal-image { width: 100%; max-width: 200px; margin-top: 15px; border-radius: 12px; }
+        .back-link { display: inline-block; margin-top: 10px; color: #991b1b; text-decoration: underline; cursor: pointer; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
-    <!-- 🔒 ด่านแรก: ล็อกอิน Google -->
+    <!-- 🔒 หน้าจอ Login (จะถูกซ่อนหลังจากล็อกอินสำเร็จ) -->
     <div id="loginOverlay">
         <img src="logo_01.png" style="width: 150px; border-radius: 20px; margin-bottom: 20px;" onerror="this.style.display='none'">
         <h2 style="color: #db2777;">ศาลเจ้า Kisane Miko</h2>
-        <p style="color: #666; margin: 15px 0 30px;">กรุณาล็อกอิน Gmail เพื่อเข้าสู่ระบบค่ะ 🐈</p>
+        <p style="color: #666; margin-bottom: 30px;">กรุณาล็อกอิน Gmail เพื่อเข้าสู่ระบบค่ะ 🐈</p>
         <div id="googleBtn"></div>
     </div>
 
     <div id="sakura-container"></div>
     
-    <!-- 🌟 ตัวละครตกแต่งซ้าย-ขวา 🌟 -->
+    <!-- ตัวละครลอยข้าง -->
     <img id="decoLeft" src="อร่อย.png" alt="Deco" class="side-deco left-deco" onerror="this.style.display='none'">
     <img id="decoRight" src="อารมณ์ดี.png" alt="Deco" class="side-deco right-deco" onerror="this.style.display='none'">
 
     <div class="main-wrapper" id="mainUI" style="display: none;">
-        <!-- โลโก้กลาง -->
         <a href="#" class="center-logo" onclick="openYouTubeApp(event)">
             <img src="logo_01.png" onerror="this.style.display='none'">
-            <div class="channel-name">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FF0000"/></svg>
-                <span>Kisane Miko</span>
-            </div>
+            <div class="channel-name"><span>Kisane Miko</span></div>
         </a>
 
-        <!-- ================= SECTION: HOME ================= -->
+        <!-- Section: Home -->
         <div id="homeSec" class="section active">
             <div class="wrapper">
                 <img src="รูปมิโกะพื้นหลังใส.png" class="top-character" onerror="this.style.display='none'">
@@ -125,22 +117,22 @@
                     <div class="content">
                         <img src="HappyBirthday.png" class="cover-img" onerror="this.style.display='none'">
                         <h1>วันเกิดมิโกะ 2026 🐈💚</h1>
-                        <p style="font-size: 0.85rem; color: #999; margin-bottom: 25px;">ล็อกอินแล้ว: <span id="userMail" style="font-weight: 700; color: #db2777;"></span></p>
-                        <button class="action-btn btn-pink" onclick="go('wishSec')">เริ่มเขียนคำอวยพร 💌</button>
-                        <button class="action-btn btn-green" onclick="go('giftSec')">ส่งของขวัญให้มิโกะ 🎁</button>
+                        <p style="font-size: 0.8rem; color: #999; margin-bottom: 20px;">ล็อกอินโดย: <span id="userMail"></span></p>
+                        <button class="action-btn btn-pink" onclick="go('wishSec')">เขียนคำอวยพร 💌</button>
+                        <button class="action-btn btn-green" onclick="go('giftSec')">ส่งของขวัญ 🎁</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ================= SECTION: WISH ================= -->
+        <!-- Section: Wish -->
         <div id="wishSec" class="section">
             <div class="wrapper">
                 <img src="รูปมิโกะพื้นหลังใส.png" class="top-character" onerror="this.style.display='none'">
                 <div class="window-box">
                     <div class="window-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="content">
-                        <h1>คำอวยพรให้มิโกะ 💌</h1>
+                        <h1>ส่งคำอวยพร 💌</h1>
                         <form id="wishForm">
                             <div class="form-group"><label>ชื่อใน Youtube</label><input type="text" id="wYT" required placeholder="ชื่อช่องของคุณ..."></div>
                             <div class="form-group"><label>คำอวยพร</label><textarea id="wMsg" rows="4" required placeholder="พิมพ์สิ่งดีๆ ให้น้องแมวเขียว..."></textarea></div>
@@ -152,20 +144,20 @@
             </div>
         </div>
 
-        <!-- ================= SECTION: GIFT ================= -->
+        <!-- Section: Gift -->
         <div id="giftSec" class="section">
             <div class="wrapper">
                 <img src="รูปมิโกะพื้นหลังใส.png" class="top-character" onerror="this.style.display='none'">
                 <div class="window-box">
                     <div class="window-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="content">
-                        <h1>ส่งของขวัญให้มิโกะ 🎁</h1>
+                        <h1>ส่งของขวัญ 🎁</h1>
                         <form id="giftForm">
-                            <div class="form-group"><label>ชื่อใน Youtube</label><input type="text" id="gYT" required placeholder="ชื่อช่องของคุณ..."></div>
-                            <div class="form-group"><label>ชื่อผู้ส่งพัสดุ</label><input type="text" id="gName" required placeholder="ชื่อที่จ่าหน้ากล่อง..."></div>
-                            <div class="form-group"><label>รายละเอียดของขวัญ</label><textarea id="gDetail" rows="3" required placeholder="เช่น ตุ๊กตาแมว, การ์ดทำมือ..."></textarea></div>
-                            <div class="form-group"><label>รูปของขวัญ (เลือกได้หลายรูป)</label><input type="file" id="gPics" multiple required accept="image/*"></div>
-                            <div class="form-group"><label>หลักฐานการส่ง (เลือกได้หลายรูป)</label><input type="file" id="gProofs" multiple required accept="image/*"></div>
+                            <div class="form-group"><label>ชื่อใน Youtube</label><input type="text" id="gYT" required></div>
+                            <div class="form-group"><label>ชื่อผู้ส่งพัสดุ</label><input type="text" id="gName" required></div>
+                            <div class="form-group"><label>รายละเอียด</label><textarea id="gDetail" rows="3" required></textarea></div>
+                            <div class="form-group"><label>รูปของขวัญ (หลายรูป)</label><input type="file" id="gPics" multiple required accept="image/*"></div>
+                            <div class="form-group"><label>หลักฐานการส่ง (หลายรูป)</label><input type="file" id="gProofs" multiple required accept="image/*"></div>
                             <button type="submit" class="action-btn btn-green" id="gBtn">แจ้งส่งของขวัญ!</button>
                         </form>
                         <span class="back-link" onclick="go('homeSec')">กลับหน้าหลัก</span>
@@ -175,30 +167,28 @@
         </div>
     </div>
 
-    <!-- 🌟 MODAL: SUCCESS (พร้อม Bubble) 🌟 -->
+    <!-- 🌟 MODAL สำเร็จ (ไม่มี location.reload) 🌟 -->
     <div class="modal-overlay" id="successModal">
-        <div class="modal-box" style="border: 4px solid #6ee7b7;">
-            <span class="close-btn" onclick="document.getElementById('successModal').style.display='none'">&times;</span>
-            
+        <div class="modal-box">
             <div class="speech-bubble" style="top: -20px; right: 5px;">
                 ขอบคุณนะ!<br>ได้รับข้อมูลแล้ว!
             </div>
-            
             <h2 style="color: #27c93f; margin-top: 20px;">ส่งสำเร็จแล้ว! ✨</h2>
-            <img src="ของขวัญ.png" style="width: 100%; max-width: 250px; border-radius: 15px; margin-top: 15px;" onerror="this.style.display='none'">
-            <p style="margin-top: 15px; font-size: 0.9rem; color: #4b5563;">มิโกะได้รับความรักของคุณแล้วนะเมี้ยว~ 🐈💚</p>
-            <button class="action-btn btn-pink" onclick="location.reload()" style="margin-top: 20px; padding: 10px; font-size: 1rem;">ปิดหน้าต่าง</button>
+            <img src="ของขวัญ.png" class="modal-image" onerror="this.style.display='none'">
+            <div style="margin-top: 20px;">
+                <button class="action-btn btn-pink" onclick="closeSuccess('homeSec')">ไปหน้าหลัก (ทำอย่างอื่นต่อ) 🐈</button>
+                <button class="action-btn btn-green" onclick="closeSuccess()" style="background:#eee; color:#666;">ส่งข้อความเพิ่ม 🐾</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // ⚙️ ตั้งค่า Client ID ของคุณ ⚙️
+        // ⚙️ ตั้งค่า Client ID และ GAS URL ⚙️
         const CLIENT_ID = "506840275210-d97qjm02ls2g6mlksi327a7le53tidvo.apps.googleusercontent.com";
         const GAS_URL = "https://script.google.com/macros/s/AKfycbxNA2-sUavxI7c5aNBzzXYMEI2WGR5UOOIjh4WfBjuaGfGe6-IBDdXNbspn6QGvteDP/exec";
         
         let email = "";
 
-        // 🌟 ตั้งค่าตัวละครแต่ละหน้า 🌟
         const decoConfig = {
             homeSec: { left: "อร่อย.png", right: "อารมณ์ดี.png" },
             wishSec: { left: "donate_miko_03.png", right: "โกรธ.png" },
@@ -209,28 +199,30 @@
             google.accounts.id.initialize({
                 client_id: CLIENT_ID,
                 callback: res => {
-                    const payload = JSON.parse(atob(res.credential.split('.')[1]));
-                    email = payload.email;
+                    const p = JSON.parse(atob(res.credential.split('.')[1]));
+                    email = p.email;
                     document.getElementById('userMail').innerText = email;
                     document.getElementById('loginOverlay').style.display = 'none';
                     document.getElementById('mainUI').style.display = 'flex';
-                    startSakura();
+                    initSakura();
                 }
             });
-            google.accounts.id.renderButton(document.getElementById("googleBtn"), { theme: "outline", size: "large", shape: "pill", text: "signin_with" });
+            google.accounts.id.renderButton(document.getElementById("googleBtn"), { theme: "outline", size: "large", shape: "pill" });
         };
 
-        // 🌟 ฟังก์ชันเปลี่ยนหน้า + เปลี่ยนตัวละคร 🌟
         function go(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            
-            // เปลี่ยนรูปตัวละคร
-            if(decoConfig[id]) {
+            if (decoConfig[id]) {
                 document.getElementById('decoLeft').src = decoConfig[id].left;
                 document.getElementById('decoRight').src = decoConfig[id].right;
             }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo(0,0);
+        }
+
+        function closeSuccess(targetId) {
+            document.getElementById('successModal').style.display = 'none';
+            if(targetId) go(targetId);
         }
 
         const toB64 = f => new Promise(res => {
@@ -238,61 +230,51 @@
             r.onload = () => res({ filename: f.name, mimeType: f.type, data: r.result.split(',')[1] });
         });
 
-        // ส่ง Wish
+        // ส่งข้อมูล Wish
         document.getElementById('wishForm').onsubmit = async e => {
             e.preventDefault();
-            const btn = document.getElementById('wBtn'); btn.disabled = true; btn.innerText = "กำลังส่งคำอวยพร... 🐾";
-            const data = { type: 'wish', email, youtubeName: document.getElementById('wYT').value, wishContent: document.getElementById('wMsg').value };
-            try {
-                await fetch(GAS_URL, { method: 'POST', body: JSON.stringify(data) });
-                document.getElementById('successModal').style.display = 'flex';
-            } catch(e) { alert("เกิดข้อผิดพลาด ลองใหม่อีกครั้งนะเมี้ยว"); }
-            btn.disabled = false; btn.innerText = "ส่งคำอวยพรเลย!";
+            const b = document.getElementById('wBtn'); b.disabled = true; b.innerText = "กำลังส่ง...";
+            const d = { type: 'wish', email, youtubeName: document.getElementById('wYT').value, wishContent: document.getElementById('wMsg').value };
+            await fetch(GAS_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(d) });
+            document.getElementById('wishForm').reset();
+            document.getElementById('successModal').style.display = 'flex';
+            b.disabled = false; b.innerText = "ส่งคำอวยพรเลย!";
         };
 
-        // ส่ง Gift
+        // ส่งข้อมูล Gift
         document.getElementById('giftForm').onsubmit = async e => {
             e.preventDefault();
-            const btn = document.getElementById('gBtn'); btn.disabled = true; btn.innerText = "กำลังอัปโหลดรูปภาพ... 📦";
-            try {
-                const data = {
-                    type: 'gift', email,
-                    youtubeName: document.getElementById('gYT').value,
-                    senderName: document.getElementById('gName').value,
-                    giftDetail: document.getElementById('gDetail').value,
-                    giftPics: await Promise.all([...document.getElementById('gPics').files].map(toB64)),
-                    proofPics: await Promise.all([...document.getElementById('gProofs').files].map(toB64))
-                };
-                await fetch(GAS_URL, { method: 'POST', body: JSON.stringify(data) });
-                document.getElementById('successModal').style.display = 'flex';
-                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#fbcfe8', '#a7f3d0', '#f472b6'] });
-            } catch(e) { alert("ไฟล์อาจใหญ่เกินไป หรือเกิดข้อผิดพลาด ลองใหม่อีกครั้งนะ"); }
-            btn.disabled = false; btn.innerText = "แจ้งส่งของขวัญ!";
+            const b = document.getElementById('gBtn'); b.disabled = true; b.innerText = "กำลังอัปโหลด...";
+            const d = {
+                type: 'gift', email,
+                youtubeName: document.getElementById('gYT').value,
+                senderName: document.getElementById('gName').value,
+                giftDetail: document.getElementById('gDetail').value,
+                giftPics: await Promise.all([...document.getElementById('gPics').files].map(toB64)),
+                proofPics: await Promise.all([...document.getElementById('gProofs').files].map(toB64))
+            };
+            await fetch(GAS_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(d) });
+            document.getElementById('giftForm').reset();
+            document.getElementById('successModal').style.display = 'flex';
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            b.disabled = false; b.innerText = "แจ้งส่งของขวัญ!";
         };
 
-        function startSakura() {
+        function initSakura() {
             const c = document.getElementById('sakura-container');
-            for(let i=0; i<18; i++) {
+            for(let i=0; i<15; i++) {
                 let s = document.createElement('div'); s.className = 'sakura';
                 s.style.left = Math.random() * 100 + 'vw';
-                s.style.width = s.style.height = (Math.random() * 12 + 10) + 'px';
-                s.style.animationDuration = (Math.random() * 6 + 4) + 's';
-                s.style.animationDelay = (Math.random() * 5) + 's';
+                s.style.width = s.style.height = (Math.random() * 10 + 10) + 'px';
+                s.style.animationDuration = (Math.random() * 5 + 5) + 's';
                 c.appendChild(s);
             }
         }
 
-        function openYouTubeApp(event) {
-            event.preventDefault();
-            const url = 'https://www.youtube.com/@KisaneMikoCh';
-            if (/android/i.test(navigator.userAgent)) {
-                window.location.href = `intent://${url.replace('https://','')}/#Intent;package=com.google.android.youtube;scheme=https;end`;
-            } else if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-                window.location.href = url.replace('https://','youtube://');
-                setTimeout(() => window.location.href = url, 500);
-            } else { window.open(url, '_blank'); }
+        function openYouTubeApp(e) {
+            e.preventDefault();
+            window.open('https://www.youtube.com/@KisaneMikoCh', '_blank');
         }
     </script>
 </body>
 </html>
-
